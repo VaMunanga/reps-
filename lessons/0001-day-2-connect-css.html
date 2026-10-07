@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 2 · Your first REPS stylesheet</title>
+  <link rel="stylesheet" href="../assets/teaching.css">
+  <script src="../assets/teaching.js" defer></script>
+</head>
+<body><main>
+  <header><p class="eyebrow">REPS · DAY 2 · LESSON 1 · ABOUT 10 MINUTES</p>
+    <h1>Connect CSS. Make one visible change.</h1>
+    <p>Your README calls today “CSS and responsive interface.” Our first win: make the REPS heading blue using a separate stylesheet, and explain why it changes.</p>
+    <p><a href="../README.md">Project plan</a> · <a href="../DAY-1-HTML-CHEATSHEET.md">Day 1 revision</a> · <a href="../reference/day-2-css.html">CSS quick reference</a></p>
+  </header>
+  <section><h2>1. Start with what you know</h2>
+    <p>Before reading further, say what <code>&lt;h1&gt;REPS&lt;/h1&gt;</code> does. What is the difference between <code>&lt;head&gt;</code> and <code>&lt;header&gt;</code>? Send your answers to your teacher; “I'm unsure” is useful too.</p>
+    <p>We will use your answers to choose the pace. Having the HTML files already written does not tell us which parts you can explain yourself.</p>
+  </section>
+  <section><h2>2. Read one CSS rule</h2>
+    <pre><code>h1 {
+    color: blue;
+}</code></pre>
+    <p><strong>Selector:</strong> <code>h1</code> chooses the heading elements. <strong>Property:</strong> <code>color</code> names what to change. <strong>Value:</strong> <code>blue</code> gives the setting. Together, <code>color: blue;</code> is a declaration.</p>
+    <p>Read this aloud: “For every h1 on this page, make the text blue.” CSS rules describe appearance; HTML supplies the content and structure. <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started">Source and recommended reading: MDN, Getting started with CSS</a>.</p>
+    <form data-quiz data-answer="b" data-correct="Correct. The selector chooses which elements a rule targets." data-retry="Try again. In h1 { color: blue; }, h1 identifies the elements to target.">
+      <p>What is the selector's job?</p>
+      <label><input type="radio" name="selector" value="a"> Set the text colour</label>
+      <label><input type="radio" name="selector" value="b"> Choose the target elements</label>
+      <label><input type="radio" name="selector" value="c"> Save the page content</label>
+      <button type="submit">Check answer</button><p class="feedback" aria-live="polite"></p>
+    </form>
+  </section>
+  <section><h2>3. Practise from memory</h2>
+    <p>Write a rule that makes the heading blue. Try without looking at the example, then press Apply. This practice area changes only the preview below.</p>
+    <label for="css-editor">Your CSS</label><textarea id="css-editor" spellcheck="false" placeholder="Write your CSS rule here"></textarea>
+    <button id="apply-css" type="button">Apply and check</button>
+    <p id="practice-feedback" class="feedback" aria-live="polite"></p>
+    <iframe id="preview" title="REPS heading practice preview" sandbox="allow-same-origin" srcdoc="<!doctype html><html lang='en'><head><meta charset='utf-8'><style id='practice-style'></style></head><body><h1>REPS</h1><p>Small Reps. Big Progress.</p></body></html>"></iframe>
+  </section>
+  <section><h2>4. Make the change in REPS</h2>
+    <ol>
+      <li>In VS Code, create a folder named <code>css</code> in the project root, beside <code>index.html</code>.</li>
+      <li>Inside it, create <code>style.css</code>. Write your heading rule there.</li>
+      <li>In <code>index.html</code>, add the following line inside <code>&lt;head&gt;</code>, before <code>&lt;/head&gt;</code>:</li>
+    </ol>
+    <pre><code>&lt;link rel="stylesheet" href="css/style.css"&gt;</code></pre>
+    <p><code>rel="stylesheet"</code> says what this linked file is for. <code>href="css/style.css"</code> gives its location, relative to <code>index.html</code>. One external stylesheet can serve several pages. <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started#external_stylesheets">Source: MDN external stylesheets</a>.</p>
+    <p>Save both files. Open <a href="../index.html">REPS Home</a> and refresh. The REPS heading should be blue. If it isn't, check the filename, folder, link location and saved changes.</p>
+    <p>Once Home works, add the same link inside the head of <code>about.html</code>. Open About and check that its heading changes too. Keep both pages using the same CSS file.</p>
+    <p class="note">Blue is a temporary learning colour. We will choose the project's design variables after you understand this connection.</p>
+  </section>
+  <section><h2>5. Explain it and get feedback</h2>
+    <p>Send: “I've added the stylesheet,” then answer these three questions:</p>
+    <ol><li>Which part of your CSS chooses the heading?</li><li>Why did both Home and About change?</li><li>If you wanted only the heading text to change colour, would you choose <code>color</code> or <code>background-color</code>?</li></ol>
+    <p>Your teacher can inspect the actual files and help with anything unclear. Ask follow-up questions at any point.</p>
+    <p>Tomorrow, try writing this rule again without the example. For today's next exercise, we will use the box model to create comfortable spacing.</p>
+  </section>
+  <section><h2>Today's quality target</h2>
+    <p>The full Day 2 milestone requires consistent styling on all six pages, readable links and buttons, and a working mobile layout without major overflow. This first lesson establishes the CSS connection; those checks come as we build the remaining pieces.</p>
+  </section>
+</main></body></html>
