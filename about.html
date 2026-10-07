@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="REPS student productivity and collaboration club at Harare Institute of Technology.">
     <title>About | REPS Student Club</title>
 </head>
 <body>
-    <a href="#main-content">Skip to main content</a>
-    <header>
-        <h1>REPS — About</h1>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+        <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="REPS Home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38">reps</a>
         <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -20,20 +22,26 @@
                 <li><a href="join.html">Join</a></li>
             </ul>
         </nav>
+        </div>
     </header>
-    <main id="main-content">
-        <section>
+    <main id="main-content" tabindex="-1">
+        <div class="page-heading">
+            <p class="eyebrow">REPS / About</p>
+            <h1>About REPS</h1>
+        </div>
+        <div class="section-grid">
+        <section class="card">
             <h2>Our story and philosophy</h2>
             <p>REPS encourages HIT students to turn intention into focused action through consistent practice and collaboration.</p>
             <p>Planning is useful; repeated focused work produces progress. We track focused minutes and completed sessions.</p>
         </section>
-        <section>
+        <section class="card">
             <h2>Vision</h2>
             <p>A student community that stewards time intentionally, pursues excellence consistently and helps one another turn potential into action.</p>
             <h2>Mission</h2>
             <p>Provide simple systems, focused spaces and collaborative opportunities for studying, coding, building, discussion and reflection.</p>
         </section>
-        <section>
+        <section class="card">
             <h2>Objectives</h2>
             <ul>
                 <li>Develop consistent work habits.</li>
@@ -41,7 +49,7 @@
                 <li>Connect productive peers across HIT programmes.</li>
             </ul>
         </section>
-        <section>
+        <section class="card">
             <h2>Proposed committee</h2>
             <ul>
                 <li>Founder / Coordinator: Takudzwa Munanga</li>
@@ -50,14 +58,18 @@
                 <li>Technical Lead: Open</li>
             </ul>
         </section>
-        <section>
+        <section class="card">
             <h2>Weekly rhythm</h2>
             <p>Focus → Study → Discuss → Build → Reflect.</p>
             <p>Plan intentional work, complete focused sessions, share progress and reflect on what to improve each week.</p>
         </section>
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2026 REPS. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>&copy; 2026 REPS. All rights reserved.</p>
+            <p>Small Reps. Big Progress.</p>
+        </div>
     </footer>
 </body>
 </html>

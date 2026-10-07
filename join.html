@@ -8,9 +8,10 @@
     <title>Join | REPS Student Club</title>
 </head>
 <body>
-    <a href="#main-content">Skip to main content</a>
-    <header>
-        <h1>REPS — Join</h1>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+        <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="REPS Home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38">reps</a>
         <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -21,17 +22,24 @@
                 <li><a href="join.html" aria-current="page">Join</a></li>
             </ul>
         </nav>
+        </div>
     </header>
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
+        <div class="page-heading">
+            <p class="eyebrow">REPS / Join</p>
+            <h1>Start your next chapter with REPS.</h1>
+        </div>
         <p>Express your interest in the proposed REPS club. This form is a Day 1 prototype; submissions will be enabled when PHP processing is ready.</p>
-        <section>
+        <section class="card">
             <h2>Membership interest</h2>
             <form>
+                <div class="form-grid">
                 <p><label for="full-name">Full name (required)</label> <input id="full-name" name="full_name" autocomplete="name" required></p>
                 <p><label for="email">Email (required)</label> <input id="email" name="email" type="email" autocomplete="email" required></p>
                 <p><label for="telephone">Telephone (optional)</label> <input id="telephone" name="telephone" type="tel" autocomplete="tel"></p>
                 <p><label for="programme">Programme / department (required)</label> <input id="programme" name="programme" required></p>
                 <p><label for="year">Academic year (required)</label> <select id="year" name="year" required><option value="">Select your year</option><option value="1">Year 1</option><option value="2">Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option></select></p>
+                </div>
                 <fieldset>
                     <legend>Interests</legend>
                     <label><input type="checkbox" name="interests[]" value="study"> Study</label>
@@ -46,8 +54,11 @@
             </form>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2026 REPS. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>&copy; 2026 REPS. All rights reserved.</p>
+            <p>Small Reps. Big Progress.</p>
+        </div>
     </footer>
 </body>
 </html>

@@ -1,3 +1,94 @@
-h1{
-    color:blue
+/* Shared design values: change a value here to update every page. */
+:root {
+    --brand: #4f6bff;
+    --action: #304aca;
+    --ink: #0f172a;
+    --muted: #526077;
+    --border: #e5e7eb;
+    --background: #fafaf8;
+    --surface: #ffffff;
+    --tint: #eef1ff;
+    --radius: 18px;
+}
+/* Widths include padding and border; content determines height. */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: var(--background); font: 1rem/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+h1, h2, h3 { line-height: 1.15; letter-spacing: -.035em; }
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin: 0 0 1rem; }
+h2 { font-size: clamp(1.35rem, 3vw, 1.8rem); margin: 0 0 1rem; }
+p { margin: 0 0 1rem; }
+p:last-child { margin-bottom: 0; }
+a { color: var(--action); text-underline-offset: .2em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--action); outline-offset: 4px; }
+img { display: block; max-width: 100%; height: auto; }
+/* Flexbox navigation wraps without requiring a JavaScript menu. */
+.site-header { background: var(--surface); border-bottom: 1px solid var(--border); }
+.header-inner, main, .footer-inner { max-width: 1120px; margin: 0 auto; padding: 1.25rem; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--ink); font-weight: 850; font-size: 1.8rem; line-height: 1; letter-spacing: -.05em; text-decoration: none; }
+.brand img { width: 38px; height: 38px; object-fit: contain; }
+nav { min-width: 0; }
+nav ul { display: flex; flex-wrap: wrap; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+nav a { display: block; padding: .6rem .8rem; border-radius: 8px; color: var(--muted); font-size: .9rem; font-weight: 650; text-decoration: none; }
+nav a:hover, nav a[aria-current="page"] { background: var(--tint); color: var(--action); }
+nav a[aria-current="page"] { box-shadow: inset 0 -2px var(--action); }
+.skip-link { position: absolute; left: 1rem; top: -10rem; z-index: 10; background: var(--surface); padding: .75rem 1rem; border: 2px solid var(--action); border-radius: 8px; }
+.skip-link:focus { top: 1rem; }
+/* Reusable surfaces; Grid starts with a single column. */
+main { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 70vh; }
+.page-heading { max-width: 720px; margin-bottom: 2rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .13em; color: var(--action); font-size: .75rem; font-weight: 750; margin-bottom: .8rem; }
+.page-heading p:last-child, .card > p { color: var(--muted); }
+.section-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+.card { min-width: 0; padding: clamp(1.25rem, 3vw, 2rem); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+main > .card { margin-bottom: 1.25rem; }
+.card ul { padding-left: 1.25rem; }
+.card li + li { margin-top: .5rem; }
+.hero { padding: clamp(1.5rem, 5vw, 4rem); margin-bottom: 1.5rem; border-radius: 24px; background: var(--ink); color: white; }
+.hero h1 { max-width: 850px; font-size: clamp(2.2rem, 6vw, 4.8rem); }
+.hero > p { max-width: 620px; color: #d4dced; }
+.hero .eyebrow { color: #b8c4ff; }
+.hero .tagline { color: white; font-weight: 650; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+.button, button { display: inline-block; border: 1px solid transparent; border-radius: 9px; padding: .8rem 1.1rem; font: inherit; font-weight: 650; line-height: 1.4; text-align: center; text-decoration: none; background: var(--action); color: white; cursor: pointer; }
+.button:hover, button:enabled:hover { background: #253aa1; }
+.button-secondary { background: white; color: var(--ink); border-color: var(--border); }
+.button-secondary:hover { background: var(--tint); color: var(--ink); }
+.hero :focus-visible { outline-color: #b8c4ff; }
+.empty-state { background: var(--background); border: 1px dashed #b5bfce; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+/* Target fields separately so checkboxes keep their compact size. */
+label { display: block; font-weight: 600; margin-bottom: .4rem; }
+input:not([type="checkbox"]), select, textarea { width: 100%; max-width: 100%; min-width: 0; border: 1px solid #929db0; border-radius: 8px; padding: .75rem; background: var(--surface); color: var(--ink); font: inherit; line-height: 1.4; }
+textarea { min-height: 110px; resize: vertical; }
+fieldset { min-width: 0; margin: 0 0 1.25rem; padding: 1rem; border: 1px solid #929db0; border-radius: 10px; }
+legend { padding: 0 .4rem; font-weight: 700; }
+fieldset label { display: inline-flex; align-items: center; gap: .4rem; margin: .25rem 1rem .25rem 0; font-weight: 400; }
+input[type="checkbox"] { width: 1.1rem; height: 1.1rem; accent-color: var(--action); }
+button:disabled, select:disabled { background: #edf0f5; color: #5b6577; border-color: #c6ccd6; cursor: not-allowed; }
+.timer-controls { display: flex; flex-wrap: wrap; gap: .5rem; }
+#timer { display: block; text-align: center; font-size: clamp(3rem, 10vw, 5rem); font-weight: 750; line-height: 1.2; font-variant-numeric: tabular-nums; letter-spacing: -.05em; padding: 1.5rem 0; }
+progress { display: block; width: 100%; height: 1rem; accent-color: var(--action); }
+figure { margin: 0; }
+figure img { border-radius: 12px; }
+figcaption { margin-top: .75rem; font-size: .9rem; color: var(--muted); }
+.site-footer { border-top: 1px solid var(--border); background: var(--surface); color: var(--muted); font-size: .9rem; }
+.footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1rem; }
+.footer-inner p { margin: 0; }
+/* Two columns only when there is room for comfortable reading. */
+@media (min-width: 48rem) {
+    .section-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1.25rem; }
+}
+@media (max-width: 30rem) {
+    .header-inner, main, .footer-inner { padding-left: 1rem; padding-right: 1rem; }
+    nav a { padding: .55rem .65rem; }
+    .actions .button { width: 100%; }
+}
+@media print {
+    body, .hero { background: white; color: black; }
+    .hero > p, .hero .eyebrow { color: black; }
+    .site-header, .skip-link, .actions, .site-footer { display: none; }
+    main { max-width: none; padding: 0; }
+    .card { break-inside: avoid; }
 }

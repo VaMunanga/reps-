@@ -8,9 +8,10 @@
     <title>Home | REPS Student Club</title>
 </head>
 <body>
-    <a href="#main-content">Skip to main content</a>
-    <header>
-        <h1>REPS</h1>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+        <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="REPS Home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38">reps</a>
         <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html" aria-current="page">Home</a></li>
@@ -21,27 +22,34 @@
                 <li><a href="join.html">Join</a></li>
             </ul>
         </nav>
+        </div>
     </header>
-    <main id="main-content">
-        <section>
-            <h2>Steward your time. Put in the reps. Pursue excellence.</h2>
+    <main id="main-content" tabindex="-1">
+        <section class="hero">
+            <p class="eyebrow">HIT student productivity &amp; collaboration</p>
+            <h1>Steward your time.<br>Put in the reps.<br>Pursue excellence.</h1>
             <p>REPS is a proposed student productivity and collaboration club at Harare Institute of Technology.</p>
-            <p>Small Reps. Big Progress.</p>
-            <p><a href="focus.html">Start focused work</a> | <a href="join.html">Join REPS</a></p>
+            <p class="tagline">Small Reps. Big Progress.</p>
+            <div class="actions"><a class="button" href="focus.html">Start focused work</a><a class="button button-secondary" href="join.html">Join REPS</a></div>
         </section>
-        <section>
+        <div class="section-grid">
+        <section class="card">
             <h2>About REPS</h2>
             <p>Study, code, discuss, build and reflect with students who want to use their time intentionally.</p>
             <p><a href="about.html">Learn about the club</a></p>
         </section>
-        <section>
+        <section class="card">
             <h2>Upcoming Discussions</h2>
             <p>There are no upcoming discussions at this time.</p>
             <p><a href="discussions.html">Explore discussions</a></p>
         </section>
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2026 REPS. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>&copy; 2026 REPS. All rights reserved.</p>
+            <p>Small Reps. Big Progress.</p>
+        </div>
     </footer>
 </body>
 </html>

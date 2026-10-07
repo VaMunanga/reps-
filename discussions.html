@@ -8,9 +8,10 @@
     <title>Discussions | REPS Student Club</title>
 </head>
 <body>
-    <a href="#main-content">Skip to main content</a>
-    <header>
-        <h1>REPS — Discussions</h1>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+        <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="REPS Home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38">reps</a>
         <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -21,20 +22,28 @@
                 <li><a href="join.html">Join</a></li>
             </ul>
         </nav>
+        </div>
     </header>
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
+        <div class="page-heading">
+            <p class="eyebrow">REPS / Discussions</p>
+            <h1>Find your people. Put in the reps.</h1>
+        </div>
         <p>Find study, coding, project and challenge discussions around campus. Filtering and participation will be connected during Day 3.</p>
-        <section>
+        <section class="card">
             <h2>Browse discussions</h2>
             <p><label for="discussion-category">Category</label>
                 <select id="discussion-category" disabled><option>All</option><option>Study</option><option>Coding</option><option>Projects</option><option>Challenges</option></select>
             </p>
-            <div id="discussion-list"><p>No discussions have been announced yet.</p></div>
+            <div id="discussion-list" class="empty-state"><p>No discussions have been announced yet.</p></div>
             <p>Each discussion will show its topic, host, date, time, location and available places. Maximum group size: 15 students.</p>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2026 REPS. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>&copy; 2026 REPS. All rights reserved.</p>
+            <p>Small Reps. Big Progress.</p>
+        </div>
     </footer>
 </body>
 </html>

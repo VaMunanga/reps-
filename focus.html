@@ -8,9 +8,10 @@
     <title>Focus | REPS Student Club</title>
 </head>
 <body>
-    <a href="#main-content">Skip to main content</a>
-    <header>
-        <h1>REPS — Focus</h1>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header">
+        <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="REPS Home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38">reps</a>
         <nav aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -21,10 +22,16 @@
                 <li><a href="join.html">Join</a></li>
             </ul>
         </nav>
+        </div>
     </header>
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
+        <div class="page-heading">
+            <p class="eyebrow">REPS / Focus</p>
+            <h1>Make time for focused work.</h1>
+        </div>
         <p>Turn an intention into a focused work session. Timer controls will be connected during Day 4.</p>
-        <section>
+        <div class="section-grid">
+        <section class="card">
             <h2>Set up your session</h2>
             <p><label for="task">Task name</label> <input id="task" name="task" type="text" placeholder="What will you work on?"></p>
             <p><label for="category">Category</label> <select id="category" name="category"><option>Study</option><option>Coding</option><option>Projects</option><option>Challenges</option></select></p>
@@ -33,21 +40,27 @@
             <p><label for="daily-goal">Daily goal (minutes)</label> <input id="daily-goal" type="number" min="1" value="60"></p>
             <p><label for="weekly-goal">Weekly goal (minutes)</label> <input id="weekly-goal" type="number" min="1" value="300"></p>
             <p><output id="timer" aria-label="Time remaining">25:00</output></p>
+            <div class="timer-controls">
             <button type="button" disabled>Start</button>
             <button type="button" disabled>Pause</button>
             <button type="button" disabled>Resume</button>
             <button type="button" disabled>Stop</button>
+            </div>
         </section>
-        <section>
+        <section class="card">
             <h2>Your progress</h2>
             <p>Completed reps: <output id="completed-reps">0</output></p>
             <p>Focused minutes: <output id="focused-minutes">0</output></p>
             <p><label for="daily-progress">Daily progress</label> <progress id="daily-progress" value="0" max="60">0 / 60</progress></p>
             <p><label for="weekly-progress">Weekly progress</label> <progress id="weekly-progress" value="0" max="300">0 / 300</progress></p>
         </section>
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2026 REPS. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>&copy; 2026 REPS. All rights reserved.</p>
+            <p>Small Reps. Big Progress.</p>
+        </div>
     </footer>
 </body>
 </html>

@@ -1,5 +1,16 @@
 # REPS Web Development Resources
 
+## YouTube follow-along route
+
+- [REPS watch-and-practice guide](YOUTUBE-LEARNING-PATH.md)
+  Recommended continuous project, verified chapter links and exercises mapped to Days 2–5. Researched 2026-10-07.
+- [EGATOR: responsive multipage education website](https://www.youtube.com/watch?v=--XrIa-iey0)
+  Main frontend build for navigation, cards, forms and responsive CSS. Uses FormSpree rather than PHP; see the guide for adaptations.
+- [freeCodeCamp: JavaScript Programming — Full Course](https://www.youtube.com/watch?v=jS4aFq5-91M)
+  Per Borgen's project-based fundamentals covering arrays, objects, loops, DOM, events and localStorage. Verified against freeCodeCamp's course announcement.
+- [Traversy Media: PHP beginner crash course](https://www.youtube.com/watch?v=BUCiSSyIGGU)
+  PHP setup, POST handling and a feedback application for Day 5. MySQL is additional tutorial scope.
+
 ## Knowledge
 
 - [MDN: Getting started with CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started)
