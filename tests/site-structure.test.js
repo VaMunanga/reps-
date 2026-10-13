@@ -35,6 +35,31 @@ describe("production page contract", () => {
     await expect(access(path.join(projectRoot, "index.html"))).rejects.toThrow();
   });
 
+  it("introduces the named REPS leaders on the About page", async () => {
+    const about = await loadPage("about.html");
+    const members = [...about.querySelectorAll(".member-card")].map((card) => ({
+      name: card.querySelector("h3")?.textContent.trim(),
+      role: card.querySelector(".member-role")?.textContent.trim(),
+      portrait: card.querySelector("img")?.getAttribute("src"),
+      alt: card.querySelector("img")?.getAttribute("alt"),
+    }));
+
+    expect(members).toEqual([
+      {
+        name: "Takudzwa Munanga",
+        role: "Team Leader",
+        portrait: "images/Takudzwa-Munanga%20Team%20Leader.png",
+        alt: "Portrait of Takudzwa Munanga",
+      },
+      {
+        name: "Miss R Peperere",
+        role: "Communications Leader",
+        portrait: "images/Miss%20R%20Peperere%20-%20Communications%20Leader.jpeg",
+        alt: "Portrait of Miss R Peperere",
+      },
+    ]);
+  });
+
   it("uses a unique, descriptive title on every page", async () => {
     const titles = [];
 

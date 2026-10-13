@@ -309,6 +309,17 @@ button:enabled:active { transform: translateY(1px) scale(0.99); }
 .span-6 { grid-column: span 6; }
 .span-7 { grid-column: span 7; }
 .span-8 { grid-column: span 8; }
+
+.team-heading { max-width: 52rem; margin-bottom: 1.5rem; }
+.team-heading > p:last-child { max-width: 42rem; color: var(--ink-soft); }
+.member-card { min-width: 0; overflow: hidden; border-radius: var(--radius-card); background: var(--paper); box-shadow: var(--shadow); }
+.member-portrait { aspect-ratio: 4 / 3; overflow: hidden; background: var(--stone); }
+.member-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.member-portrait-cutout { background: var(--cobalt); }
+.member-portrait-cutout img { object-fit: contain; object-position: center bottom; padding: 1.5rem 1.5rem 0; }
+.member-details { padding: 1.5rem; }
+.member-details h3 { margin-bottom: 0.35rem; }
+.member-role { margin: 0; color: var(--cobalt-strong); font-size: 0.78rem; font-weight: 750; letter-spacing: 0.09em; text-transform: uppercase; }
 .span-12 { grid-column: 1 / -1; }
 
 .metric { display: grid; gap: 0.35rem; }
