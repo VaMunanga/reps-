@@ -1,3 +1,35 @@
+# REPS Student Club Website
+
+REPS is a responsive, multi-page student-club MVP for Harare Institute of Technology. The current release uses semantic HTML, authored CSS, vanilla JavaScript modules, a small PHP endpoint, and Neon PostgreSQL.
+
+The release includes:
+
+- a responsive cobalt atmospheric-console design based on `atmospheric-data-console-DESIGN.md`;
+- a reliable focus timer with versioned local progress;
+- truthful proposed-discussion browsing and local expressions of interest;
+- an accessible native-dialog identity gallery;
+- progressively enhanced membership submission through PHP and Neon;
+- locally hosted fonts and motion that respects reduced-motion preferences.
+
+## Run and test
+
+Requirements: Node.js 20+, npm, and PHP 8.2+ for local checks. A deployed PHP runtime also needs PDO PostgreSQL.
+
+```powershell
+npm install
+npm test
+& 'C:\xampp\php\php.exe' tests/php/join-validation.php
+& 'C:\xampp\php\php.exe' -S 127.0.0.1:8765
+```
+
+Open `http://127.0.0.1:8765/index.php`. Local XAMPP installations without `pdo_pgsql` can render and validate the app but cannot submit to Neon. See [docs/deployment.md](docs/deployment.md) for database migration, environment, deployment, rollback, and verification instructions.
+
+## Project documentation
+
+The implementation specification and plan are in `docs/superpowers/`. The original academic project-management plan is retained below for coursework context.
+
+---
+
 REPS STUDENT CLUB WEBSITE
 MVP Project Documentation and Project Management Plan
 Project Name: REPS Student Productivity and Collaboration Club Website

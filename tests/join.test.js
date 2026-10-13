@@ -27,6 +27,12 @@ async function submit(dom, form) {
 }
 
 describe("Join form", () => {
+  it("keeps the server-rendered submit control available without JavaScript", async () => {
+    const source = await readFile(`${projectRoot}/join.html`, "utf8");
+    const dom = new JSDOM(source);
+    expect(dom.window.document.querySelector('#join-form button[type="submit"]').disabled).toBe(false);
+  });
+
   it("preserves a normal POST fallback and enables enhancement", async () => {
     const { form } = await setup(vi.fn());
     expect(form.method).toBe("post");
