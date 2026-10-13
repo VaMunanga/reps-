@@ -1,0 +1,10 @@
+.git
+.gitignore
+.env
+.env.*
+.qa
+.scratch
+.superpowers
+.worktrees
+node_modules
+npm-debug.log*

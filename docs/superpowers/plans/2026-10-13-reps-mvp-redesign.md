@@ -6,7 +6,7 @@
 
 **Architecture:** Preserve the multi-page site and progressively enhance it with focused vanilla ES modules. A single PHP JSON/form endpoint validates and upserts membership interest through PDO into Neon PostgreSQL; database schema changes are migration files tested on an ephemeral branch before production.
 
-**Tech Stack:** Semantic HTML, CSS custom properties, vanilla JavaScript ES modules, GSAP 3 progressive enhancement, Vitest + jsdom, PHP 8.3+ with PDO PostgreSQL, Neon PostgreSQL, Railway-compatible deployment.
+**Tech Stack:** Semantic HTML, CSS custom properties, vanilla JavaScript ES modules, GSAP 3 progressive enhancement, Vitest + jsdom, PHP 8.3+ with PDO PostgreSQL, Neon PostgreSQL, Render Free Docker deployment.
 
 **Spec:** `docs/superpowers/specs/2026-10-13-reps-mvp-redesign.md` and `atmospheric-data-console-DESIGN.md`
 
@@ -197,7 +197,7 @@
 - [ ] **Step 3: Serve locally with PHP and capture desktop 1440px and mobile 390px screenshots** for Home, Focus, Discussions, Gallery, and Join; fix overflow, hierarchy, contrast, long-content, and keyboard issues found.
 - [ ] **Step 4: Verify reduced-motion mode and degraded operation with GSAP/fonts blocked**; require all content, navigation, timer, filters, gallery, and form fallback to remain usable.
 - [ ] **Step 5: Write the deployment/runbook documentation** covering required environment variables, pooled runtime versus direct migration URL, local commands, rollback, and secret-handling rules without including values.
-- [ ] **Step 6: After explicit approval of the hosting choice/cost, deploy to Railway (recommended), set `DATABASE_URL` only in host variables, and verify every route and asset over HTTPS**.
+- [ ] **Step 6: Deploy to the approved Render Free Docker web service, set `DATABASE_URL` only in host variables, and verify every route and asset over HTTPS**.
 - [ ] **Step 7: Submit one clearly identifiable release-test membership record, confirm it in Neon, then remove only that known test row**; never display the connection string or other submissions.
 - [ ] **Step 8: Run a final broken-link and browser-console pass against the public URL** and require HTTP success, no mixed content, no missing assets, and no uncaught errors.
 - [ ] **Step 9: Commit** with `git commit -m "docs: add verified REPS release runbook"`.

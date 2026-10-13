@@ -95,7 +95,7 @@ The runtime uses Neon's pooled `DATABASE_URL`. Schema migration uses the direct 
 - GSAP may progressively enhance motion; all content and actions must remain usable if it does not load.
 - No frontend framework, CMS, authentication system, admin panel, analytics tracker, or image upload in this release.
 - Use a normal ephemeral Neon child branch of `production` to test the migration before applying it to `production`.
-- Deploy to a PHP-compatible host. Railway is the recommended same-day target, but no paid plan or external deployment is created without the user's explicit approval.
+- Deploy to a Render Free Docker web service using PHP 8.3 with `pdo_pgsql`. Do not upgrade or create any paid resource without the user's explicit approval.
 - Do not modify the teaching records, lessons, or reference material unless a broken production link requires it.
 
 ## Definition of done

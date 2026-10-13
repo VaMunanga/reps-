@@ -74,9 +74,30 @@ Remove-Item Env:DATABASE_URL_UNPOOLED
 
 Delete an expired or no-longer-needed temporary branch through the Neon console or CLI only after confirming its exact branch name and that it is not `production`.
 
-## Hosting setup
+## Render Free hosting setup
 
-The host must provide:
+The approved launch target is a Render Free web service. PHP is not a Render native runtime, so the repository includes a `Dockerfile` that provides PHP 8.3, Apache, and `pdo_pgsql`. `render.yaml` declares the free Docker service and prompts for `DATABASE_URL` without storing its value in Git.
+
+Render Free is suitable for this student-club launch, with two important constraints:
+
+- the service spins down after 15 minutes without inbound traffic and can take about one minute to wake;
+- each workspace receives 750 free instance-hours per calendar month.
+
+See Render's current [Free service limitations](https://render.com/docs/free) before launch.
+
+### Connect GitHub and deploy
+
+1. Merge the reviewed release branch into the repository's default `main` branch.
+2. Sign in at [dashboard.render.com](https://dashboard.render.com/).
+3. Open **Account Settings**. Under **Git Deployment Credentials**, choose **Add credential**, select GitHub, and authorize Render.
+4. In the Render Dashboard, choose **New > Blueprint**.
+5. Select `VaMunanga/reps-`. If it is not listed, configure the Render GitHub app to grant access to that repository, then refresh Render.
+6. Keep the Blueprint path as `render.yaml` and continue. The Blueprint creates the `reps-student-club` Docker web service on the Free plan.
+7. When Render prompts for `DATABASE_URL`, paste the pooled Neon `DATABASE_URL` value. Do not use `DATABASE_URL_UNPOOLED` and do not paste either value into build logs or source files.
+8. Apply the Blueprint and wait for the Docker build and health check to pass.
+9. Open the generated `onrender.com` URL and complete the live verification below.
+
+The deployed service must provide:
 
 - public HTTPS;
 - PHP 8.3+;
@@ -85,9 +106,9 @@ The host must provide:
 - a writable server log for generic endpoint exceptions;
 - a document root that preserves the repository's relative paths.
 
-Before publishing, confirm the provider, pricing, and any paid plan with the project owner. Do not create a paid service automatically.
+Keep the service on the **Free** compute plan. Do not upgrade it or add paid resources without the project owner's explicit approval.
 
-After configuring the host:
+### Live verification
 
 1. Set `DATABASE_URL` to the pooled Neon production URL in host variables.
 2. Deploy the exact reviewed commit.
