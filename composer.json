@@ -1,0 +1,10 @@
+{
+  "name": "reps/student-club-site",
+  "description": "Small PHP boundary for REPS membership interest submissions.",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "ext-pdo": "*",
+    "ext-pdo_pgsql": "*"
+  }
+}

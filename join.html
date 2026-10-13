@@ -11,7 +11,7 @@
     <header class="site-header"><div class="header-inner"><a class="brand" href="index.php" aria-label="REPS home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38"><span class="brand-word">reps</span></a><nav class="site-nav" aria-label="Main navigation"><ul><li><a href="index.php">Home</a></li><li><a href="about.html">About</a></li><li><a href="focus.html">Focus</a></li><li><a href="discussions.html">Discussions</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="practice.html">Practice</a></li></ul></nav><a class="header-cta" href="join.html" aria-current="page">Join REPS</a></div></header>
     <main id="main-content" class="site-main" tabindex="-1">
         <section class="section-shell page-heading"><p class="kicker">Register your interest</p><h1>Make your next rep count.</h1><p>Tell us what you want to practise. Your response will help shape a useful first programme.</p></section>
-        <section class="section-shell"><div class="section-grid"><section class="panel span-8" aria-labelledby="membership-title"><h2 id="membership-title">Membership interest</h2><form id="join-form" method="post">
+        <section class="section-shell"><div class="section-grid"><section class="panel span-8" aria-labelledby="membership-title"><h2 id="membership-title">Membership interest</h2><form id="join-form" action="api/join.php" method="post">
             <div class="form-grid">
                 <p class="field"><label for="full-name">Full name</label><input id="full-name" name="full_name" autocomplete="name" maxlength="120" required></p>
                 <p class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></p>
@@ -24,10 +24,10 @@
                 <p class="field field-full"><label for="message">Message <span class="field-note">optional</span></label><textarea id="message" name="message" maxlength="2000"></textarea></p>
                 <label class="consent field-full"><input type="checkbox" name="consent" value="1" required> I agree that REPS may store this information to contact me about the proposed club.</label>
             </div>
-            <div class="actions"><button type="submit" disabled>Submit interest</button></div>
-        </form></section><aside class="panel panel-mint span-4"><h2>Your data stays focused.</h2><p>REPS collects only the details on this form. There is no account, password, public profile, or member directory in this release.</p><p>Submission is temporarily disabled while the secure database connection is prepared.</p></aside></div></section>
+            <div class="actions"><button type="submit" disabled>Submit interest</button></div><p id="join-status" class="form-status" role="status" aria-live="polite">Your information is sent only when you submit this form.</p>
+        </form></section><aside class="panel panel-mint span-4"><h2>Your data stays focused.</h2><p>REPS collects only the details on this form. There is no account, password, public profile, or member directory in this release.</p><p>The secure submission is stored in Neon PostgreSQL and used only for proposed-club contact.</p></aside></div></section>
     </main>
     <footer class="site-footer"><div class="footer-inner"><div><div class="footer-brand">Start with intent.</div><p>Your interests can shape the first REPS programme.</p></div><div class="footer-meta"><p>&copy; <span data-current-year>2026</span> REPS</p><p><a href="about.html">How REPS works</a></p></div></div></footer>
-    <script type="module" src="js/site.js"></script>
+    <script type="module" src="js/site.js"></script><script type="module" src="js/join.js"></script>
 </body>
 </html>

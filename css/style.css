@@ -363,6 +363,8 @@ progress { display: block; width: 100%; height: 0.75rem; accent-color: var(--cob
 .discussion-category { color: var(--cobalt-strong); font-size: 0.72rem; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; }
 .discussion-note { color: var(--ink-soft); font-size: 0.78rem; }
 .form-status { margin-top: 1rem; padding: 0.9rem 1rem; border-left: 0.25rem solid var(--cobalt); background: rgb(79 107 255 / 0.08); }
+.field-error { display: block; min-height: 1.25em; color: #a71616; font-size: 0.78rem; font-weight: 650; }
+[aria-invalid="true"] { border-color: #a71616 !important; box-shadow: 0 0 0 2px rgb(167 22 22 / 0.14); }
 .identity-board { width: 100%; min-height: 0; overflow: hidden; padding: 0; border: 0; border-radius: var(--radius-panel); background: #fff; cursor: zoom-in; }
 .identity-board img { width: 100%; transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1); }
 .identity-board:hover img { transform: scale(1.025); }

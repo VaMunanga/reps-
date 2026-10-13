@@ -7,7 +7,7 @@ const helperDirectory = path.dirname(fileURLToPath(import.meta.url));
 export const projectRoot = path.resolve(helperDirectory, "../..");
 
 export const productionPages = [
-  "index.html",
+  "index.php",
   "about.html",
   "focus.html",
   "discussions.html",
