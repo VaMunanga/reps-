@@ -363,11 +363,20 @@ progress { display: block; width: 100%; height: 0.75rem; accent-color: var(--cob
 .discussion-category { color: var(--cobalt-strong); font-size: 0.72rem; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; }
 .discussion-note { color: var(--ink-soft); font-size: 0.78rem; }
 .form-status { margin-top: 1rem; padding: 0.9rem 1rem; border-left: 0.25rem solid var(--cobalt); background: rgb(79 107 255 / 0.08); }
-.identity-board { overflow: hidden; border-radius: var(--radius-panel); background: #fff; }
+.identity-board { width: 100%; min-height: 0; overflow: hidden; padding: 0; border: 0; border-radius: var(--radius-panel); background: #fff; cursor: zoom-in; }
 .identity-board img { width: 100%; transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1); }
 .identity-board:hover img { transform: scale(1.025); }
 figure { margin: 0; }
 figcaption { margin-top: 0.75rem; color: var(--ink-soft); font-size: 0.82rem; }
+.activity-accordion { display: grid; gap: 0.5rem; margin-block: 1.5rem; }
+.activity-accordion details { padding: 0.9rem 1rem; border-radius: var(--radius-control); background: rgb(244 241 232 / 0.62); }
+.activity-accordion summary { font-family: "Outfit", system-ui, sans-serif; font-size: 1.05rem; font-weight: 650; cursor: pointer; }
+.activity-accordion p { margin-top: 0.75rem; font-size: 0.82rem; }
+.identity-dialog { width: min(92vw, 75rem); max-height: 90dvh; padding: 1rem; border: 0; border-radius: var(--radius-panel); color: var(--ink); background: var(--paper); box-shadow: 0 2rem 8rem rgb(11 13 18 / 0.42); }
+.identity-dialog::backdrop { background: rgb(11 13 18 / 0.78); backdrop-filter: blur(0.35rem); }
+.identity-dialog-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.identity-dialog-bar h2 { margin-bottom: 0; font-size: clamp(1.4rem, 3vw, 2.3rem); }
+.identity-dialog > img { max-height: calc(90dvh - 7rem); margin-inline: auto; object-fit: contain; }
 
 .site-footer { border-top: 1px solid var(--line); }
 .footer-inner { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem; padding-block: 2.5rem; }
