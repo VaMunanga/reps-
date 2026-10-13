@@ -1,4 +1,4 @@
-import { access } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -9,6 +9,27 @@ import {
 } from "./helpers/load-page.js";
 
 describe("production page contract", () => {
+  it("keeps the approved cobalt atmospheric design tokens and nested hero telemetry", async () => {
+    const css = await readFile(path.join(projectRoot, "css/style.css"), "utf8");
+    const home = await loadPage("index.php");
+
+    expect(css).toContain("--cobalt: #4f6bff");
+    expect(css).toContain("--cobalt-strong: #304aca");
+    expect(css).toContain("--signal: #ff3333");
+    expect(css).toContain("--night: #000000");
+    expect(css).toContain("--space-section: 5rem");
+    expect(css).toMatch(/progress\s*\{[^}]*accent-color:\s*var\(--mint\)/s);
+    expect(css).toMatch(/progress\s*\{[^}]*background:\s*var\(--ink\)/s);
+    expect(home.querySelectorAll(".hero-console .console-metric").length).toBeGreaterThanOrEqual(2);
+    expect(home.querySelector(".panel-stone")).toBeNull();
+    expect(home.querySelector(".hero-console")?.textContent).not.toMatch(/website is active/i);
+
+    for (const page of ["about.html", "join.html", "practice.html"]) {
+      const document = await loadPage(page);
+      expect(document.querySelector(".panel-mint"), `${page} reserves mint for telemetry`).toBeNull();
+    }
+  });
+
   it("serves the root homepage through PHP and retires the HTML duplicate", async () => {
     await expect(access(path.join(projectRoot, "index.php"))).resolves.toBeUndefined();
     await expect(access(path.join(projectRoot, "index.html"))).rejects.toThrow();

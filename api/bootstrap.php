@@ -76,6 +76,20 @@ function membershipPdo(string $databaseUrl): PDO {
     ]);
 }
 
+function membershipSaveResponse(string $outcome): array {
+    $created = $outcome === 'created';
+    return [
+        'status' => $created ? 201 : 200,
+        'payload' => [
+            'ok' => true,
+            'result' => $created ? 'created' : 'updated',
+            'message' => $created
+                ? 'Interest saved. You can update these details by submitting the same email again.'
+                : 'Existing interest updated.',
+        ],
+    ];
+}
+
 function wantsJson(): bool {
     return str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 }

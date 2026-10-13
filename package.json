@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "test": "vitest run",
-    "test:site": "vitest run tests/site-structure.test.js"
+    "test:site": "vitest run tests/site-structure.test.js",
+    "test:layout": "node scripts/check-responsive-layout.mjs"
   },
   "dependencies": {
     "@neon/config": "^1.9.1",

@@ -29,9 +29,13 @@
                 <div class="actions"><a class="button" href="focus.html">Start a focus rep</a><a class="button button-secondary" href="join.html">Join REPS</a></div>
             </div>
             <aside class="hero-console" aria-label="REPS programme status" data-reveal data-ambient>
-                <span class="status-chip" data-tone="mint">Open for interest</span>
+                <div class="console-head"><span class="status-chip" data-tone="mint">Open for interest</span><span class="console-id">REPS / NODE 01</span></div>
                 <img class="hero-mark" src="images/brand/reps-logo.png" alt="REPS, Small Reps. Big Progress." width="420" height="240" data-motion-image>
-                <p class="hero-note">The website is active. Club activities remain proposals until HIT approval and student coordination are confirmed.</p>
+                <div class="console-grid" aria-label="Current release status">
+                    <div class="console-metric"><span class="metric-label">Website</span><strong>Release candidate</strong></div>
+                    <div class="console-metric"><span class="metric-label">Programme</span><strong>Proposed</strong></div>
+                </div>
+                <p class="hero-note">This website presents the REPS proposal. Club activities remain proposals until HIT approval and student coordination are confirmed.</p>
             </aside>
         </section>
         <section class="cycle-marquee" aria-label="REPS practice cycle">
@@ -43,7 +47,7 @@
                 <article class="panel panel-cobalt span-7" data-reveal><h2 id="rhythm-title">A rhythm for doing the work.</h2><p>REPS connects personal focus with practical peer support. Each part of the loop has a clear purpose.</p><a class="button button-secondary" href="about.html">How REPS works</a></article>
                 <article class="panel panel-mint span-5" data-reveal><div class="metric"><span class="metric-label">Group principle</span><strong class="metric-value">15 max</strong></div><p>Proposed discussions stay small enough for every student to contribute.</p></article>
                 <article class="panel span-4" data-reveal><h3>Focus</h3><p>Define one task, protect a block of time, and record the rep.</p><a href="focus.html">Open the focus tool</a></article>
-                <article class="panel panel-stone span-8" data-reveal><h3>Discuss, build, reflect</h3><p>Use small groups to clarify ideas, turn learning into projects, then improve the next attempt.</p><a href="discussions.html">Browse proposed formats</a></article>
+                <article class="panel panel-night span-8" data-reveal><h3>Discuss, build, reflect</h3><p>Use small groups to clarify ideas, turn learning into projects, then improve the next attempt.</p><a href="discussions.html">Browse proposed formats</a></article>
             </div>
         </section>
     </main>

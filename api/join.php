@@ -31,14 +31,17 @@ try {
             message = EXCLUDED.message,
             consent = EXCLUDED.consent,
             submitted_at = NOW()
-        RETURNING id
+        RETURNING id, CASE WHEN xmax = 0 THEN 'created' ELSE 'updated' END AS outcome
     SQL);
     $statement->execute([
         'full_name' => $data['full_name'], 'email' => $data['email'], 'telephone' => $data['telephone'],
         'programme' => $data['programme'], 'academic_year' => $data['academic_year'], 'interests' => $interests,
         'goal' => $data['goal'], 'working_time' => $data['working_time'], 'message' => $data['message'], 'consent' => $data['consent'],
     ]);
-    respond(200, ['ok' => true, 'message' => 'Interest saved. You can update these details by submitting the same email again.']);
+    $result = $statement->fetch();
+    $outcome = ($result['outcome'] ?? '') === 'created' ? 'created' : 'updated';
+    $response = membershipSaveResponse($outcome);
+    respond($response['status'], $response['payload']);
 } catch (Throwable $error) {
     error_log('REPS membership submission failed: ' . $error->getCode());
     respond(500, ['ok' => false, 'message' => 'We could not save your interest. Please try again.']);

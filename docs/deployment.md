@@ -2,7 +2,7 @@
 
 ## Runtime contract
 
-The website needs a PHP 8.2+ web runtime with these extensions enabled:
+The website needs a PHP 8.3+ web runtime with these extensions enabled:
 
 - PDO
 - PDO PostgreSQL (`pdo_pgsql`)
@@ -79,7 +79,7 @@ Delete an expired or no-longer-needed temporary branch through the Neon console 
 The host must provide:
 
 - public HTTPS;
-- PHP 8.2+ (PHP 8.3+ preferred);
+- PHP 8.3+;
 - `pdo_pgsql`;
 - an encrypted `DATABASE_URL` runtime variable;
 - a writable server log for generic endpoint exceptions;

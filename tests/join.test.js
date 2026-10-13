@@ -58,6 +58,19 @@ describe("Join form", () => {
     expect(form.elements.full_name.value).toBe("");
   });
 
+  it("shows the endpoint's distinct duplicate-email update result", async () => {
+    const fetchImpl = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ ok: true, message: "Existing interest updated." }),
+    });
+    const { dom, form, document } = await setup(fetchImpl);
+    fillValid(form);
+
+    await submit(dom, form);
+
+    expect(document.querySelector("#join-status").textContent).toBe("Existing interest updated.");
+  });
+
   it("maps 422 field errors without reflecting unsafe input", async () => {
     const fetchImpl = vi.fn().mockResolvedValue({ ok: false, status: 422, json: async () => ({ ok: false, message: "Check the highlighted fields.", errors: { email: "Enter a valid email address." } }) });
     const { dom, form, document } = await setup(fetchImpl);

@@ -60,4 +60,33 @@ describe("initMotion", () => {
       }
     }
   });
+
+  it("gives each revealed section its own scroll trigger", () => {
+    const root = motionDocument();
+    const scrollTrigger = { create: vi.fn() };
+    const previousScrollTrigger = globalThis.ScrollTrigger;
+    globalThis.ScrollTrigger = scrollTrigger;
+    const gsap = {
+      fromTo: vi.fn(),
+      to: vi.fn(),
+      registerPlugin: vi.fn(),
+      context: vi.fn((callback) => {
+        callback();
+        return { revert: vi.fn() };
+      }),
+    };
+
+    try {
+      initMotion({ root, gsap, reduceMotion: false });
+      const reveals = [...root.querySelectorAll("[data-reveal]")];
+      const revealCalls = gsap.fromTo.mock.calls.filter(([target]) => reveals.includes(target));
+
+      expect(revealCalls).toHaveLength(2);
+      revealCalls.forEach(([target, , options]) => {
+        expect(options.scrollTrigger.trigger).toBe(target);
+      });
+    } finally {
+      globalThis.ScrollTrigger = previousScrollTrigger;
+    }
+  });
 });

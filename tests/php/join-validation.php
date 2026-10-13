@@ -44,6 +44,14 @@ $html = renderHtmlResponse(['message' => 'Check the highlighted fields.', 'error
 expectTrue(str_contains($html, 'Email:</strong> Enter a valid &lt;email&gt;.'), 'HTML fallback renders escaped field errors');
 expectTrue(!str_contains($html, '<email>'), 'HTML fallback does not render error markup');
 
+$created = membershipSaveResponse('created');
+expectSame(201, $created['status'], 'new membership interest returns created status');
+expectSame('created', $created['payload']['result'], 'new membership interest identifies a created record');
+$updated = membershipSaveResponse('updated');
+expectSame(200, $updated['status'], 'duplicate email update returns success status');
+expectSame('updated', $updated['payload']['result'], 'duplicate email identifies an updated record');
+expectSame('Existing interest updated.', $updated['payload']['message'], 'duplicate email has distinct feedback');
+
 if ($failures) {
     fwrite(STDERR, implode(PHP_EOL, $failures) . PHP_EOL);
     exit(1);

@@ -13,7 +13,7 @@ The release includes:
 
 ## Run and test
 
-Requirements: Node.js 20+, npm, and PHP 8.2+ for local checks. A deployed PHP runtime also needs PDO PostgreSQL.
+Requirements: Node.js 20+, npm, and PHP 8.3+ for local checks. A deployed PHP runtime also needs PDO PostgreSQL.
 
 ```powershell
 npm install

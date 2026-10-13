@@ -24,20 +24,20 @@ export function initMotion({
 
   gsap.context(() => {
     const reveals = [...root.querySelectorAll("[data-reveal]")];
-    if (reveals.length) {
+    reveals.forEach((element, index) => {
       gsap.fromTo(
-        reveals,
+        element,
         { opacity: 0, y: 28 },
         {
           opacity: 1,
           y: 0,
           duration: 0.85,
-          stagger: 0.08,
+          delay: Math.min(index, 3) * 0.06,
           ease: "power3.out",
-          ...(scrollTrigger ? { scrollTrigger: { trigger: reveals[0], start: "top 86%", once: true } } : {}),
+          ...(scrollTrigger ? { scrollTrigger: { trigger: element, start: "top 86%", once: true } } : {}),
         },
       );
-    }
+    });
 
     root.querySelectorAll("[data-motion-image]").forEach((image) => {
       gsap.fromTo(
