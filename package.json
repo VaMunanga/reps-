@@ -1,6 +1,17 @@
 {
+  "name": "reps-mvp-redesign",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "test:site": "vitest run tests/site-structure.test.js"
+  },
   "dependencies": {
     "@neon/config": "^1.9.1",
     "@neon/env": "^1.6.1"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "vitest": "^5.0.4"
   }
 }
