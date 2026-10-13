@@ -24,6 +24,9 @@ expectSame('vara munanga', strtolower($result['data']['full_name']), 'name is tr
 expectSame('student@hit.ac.zw', $result['data']['email'], 'email is normalized');
 expectTrue(!str_contains($result['data']['message'], '<script>'), 'stored message strips HTML');
 
+$nestedInterests = validateMembership(array_replace($valid, ['interests' => ['study', ['coding']]]));
+expectTrue(isset($nestedInterests['errors']['interests']), 'nested interest arrays are rejected without warnings');
+
 $invalid = validateMembership([
     'full_name' => '', 'email' => 'not-an-email', 'programme' => '', 'year' => '9',
     'interests' => 'coding', 'goal' => str_repeat('x', 1001), 'working_time' => 'Midnight', 'consent' => '0',
@@ -36,6 +39,10 @@ $parts = parseDatabaseUrl('postgresql://user:p%40ss@host.example:5432/reps?sslmo
 expectSame('pgsql:host=host.example;port=5432;dbname=reps;sslmode=require', $parts['dsn'], 'database DSN is derived safely');
 expectSame('p@ss', $parts['password'], 'URL encoded password is decoded');
 expectTrue(!str_contains($parts['dsn'], 'p@ss'), 'DSN does not contain the password');
+
+$html = renderHtmlResponse(['message' => 'Check the highlighted fields.', 'errors' => ['email' => 'Enter a valid <email>.']]);
+expectTrue(str_contains($html, 'Email:</strong> Enter a valid &lt;email&gt;.'), 'HTML fallback renders escaped field errors');
+expectTrue(!str_contains($html, '<email>'), 'HTML fallback does not render error markup');
 
 if ($failures) {
     fwrite(STDERR, implode(PHP_EOL, $failures) . PHP_EOL);

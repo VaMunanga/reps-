@@ -64,6 +64,8 @@ describe("Join form", () => {
     fillValid(form);
     await submit(dom, form);
     expect(form.elements.email.getAttribute("aria-invalid")).toBe("true");
+    expect(form.elements.email.getAttribute("aria-describedby")).toBe("error-email");
+    expect(document.activeElement).toBe(form.elements.email);
     expect(document.querySelector('[data-error-for="email"]').textContent).toBe("Enter a valid email address.");
   });
 

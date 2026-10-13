@@ -18,6 +18,7 @@
     --cobalt: #4f6bff;
     --cobalt-strong: #304aca;
     --mint: #76d2b6;
+    --mint-ink: #185646;
     --signal: #ff3333;
     --mineral: #d5d2c6;
     --stone: #a09d94;
@@ -227,6 +228,7 @@ img { display: block; max-width: 100%; height: auto; }
 }
 
 .kicker { margin-bottom: 1.25rem; color: var(--mint); }
+.page-heading .kicker { color: var(--mint-ink); }
 .status-chip { display: inline-flex; width: fit-content; align-items: center; min-height: 2rem; padding: 0.35rem 0.7rem; border: 1px solid currentColor; border-radius: var(--radius-pill); }
 .status-chip[data-tone="mint"] { color: #0a3c2f; background: var(--mint); }
 .status-chip[data-tone="signal"] { color: #fff; background: #c92323; }

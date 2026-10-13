@@ -43,8 +43,13 @@ describe("discussion model", () => {
 
     const storage = memoryStorage();
     const state = joinDiscussion(loadDiscussionState(storage), "challenge-lab").state;
-    saveDiscussionState(storage, state);
+    expect(saveDiscussionState(storage, state)).toBe(true);
     expect(loadDiscussionState(storage)).toEqual(state);
+  });
+
+  it("reports unavailable persistence without throwing", () => {
+    const storage = { setItem: () => { throw new Error("denied"); } };
+    expect(saveDiscussionState(storage, { version: 1, joinedIds: [], counts: {} })).toBe(false);
   });
 
   it("labels every item as proposed and unscheduled", () => {

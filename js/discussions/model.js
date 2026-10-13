@@ -48,5 +48,10 @@ export function loadDiscussionState(storage) {
 }
 
 export function saveDiscussionState(storage, state) {
-  storage.setItem(DISCUSSION_STORAGE_KEY, JSON.stringify(state));
+  try {
+    storage.setItem(DISCUSSION_STORAGE_KEY, JSON.stringify(state));
+    return true;
+  } catch {
+    return false;
+  }
 }

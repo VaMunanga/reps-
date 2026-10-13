@@ -2,13 +2,17 @@ export const FOCUS_STORAGE_KEY = "reps.focus.v1";
 const VERSION = 1;
 
 function dateKey(date) {
-  return date.toISOString().slice(0, 10);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
 }
 
 function weekKey(date) {
   const start = new Date(date);
-  const day = start.getUTCDay();
-  start.setUTCDate(start.getUTCDate() - ((day + 6) % 7));
+  const day = start.getDay();
+  start.setHours(0, 0, 0, 0);
+  start.setDate(start.getDate() - ((day + 6) % 7));
   return dateKey(start);
 }
 
@@ -70,13 +74,15 @@ function normalize(candidate, now) {
     },
   };
 
-  if (normalized.stats.daily.date !== dateKey(now)) {
-    normalized.stats.daily = { date: dateKey(now), minutes: 0 };
-  }
-  if (normalized.stats.weekly.weekStart !== weekKey(now)) {
-    normalized.stats.weekly = { weekStart: weekKey(now), minutes: 0 };
-  }
-  return normalized;
+  return reconcileFocusData(normalized, now);
+}
+
+export function reconcileFocusData(data, now = new Date()) {
+  const currentDate = dateKey(now);
+  const currentWeek = weekKey(now);
+  if (data.stats.daily.date !== currentDate) data.stats.daily = { date: currentDate, minutes: 0 };
+  if (data.stats.weekly.weekStart !== currentWeek) data.stats.weekly = { weekStart: currentWeek, minutes: 0 };
+  return data;
 }
 
 export function loadFocusData(storage, now = new Date()) {
@@ -89,5 +95,10 @@ export function loadFocusData(storage, now = new Date()) {
 }
 
 export function saveFocusData(storage, data) {
-  storage.setItem(FOCUS_STORAGE_KEY, JSON.stringify(data));
+  try {
+    storage.setItem(FOCUS_STORAGE_KEY, JSON.stringify(data));
+    return true;
+  } catch {
+    return false;
+  }
 }

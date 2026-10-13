@@ -4,24 +4,38 @@ function clearErrors(form) {
 }
 
 function ensureErrorSlots(form) {
-  [...form.elements].filter((field) => field.name && !field.name.endsWith("[]") && field.type !== "submit").forEach((field) => {
-    if (form.querySelector(`[data-error-for="${field.name}"]`)) return;
+  const seen = new Set();
+  [...form.elements].filter((field) => field.name && field.type !== "submit").forEach((field) => {
+    const name = field.name.replace(/\[\]$/, "");
+    if (seen.has(name)) return;
+    seen.add(name);
+    if (form.querySelector(`[data-error-for="${name}"]`)) return;
     const error = form.ownerDocument.createElement("span");
     error.className = "field-error";
-    error.dataset.errorFor = field.name;
-    error.id = `error-${field.name.replaceAll("_", "-")}`;
-    field.insertAdjacentElement("afterend", error);
+    error.dataset.errorFor = name;
+    error.id = `error-${name.replaceAll("_", "-")}`;
+    const related = [...form.querySelectorAll(`[name="${field.name}"]`)];
+    related.forEach((control) => {
+      const descriptions = new Set((control.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean));
+      descriptions.add(error.id);
+      control.setAttribute("aria-describedby", [...descriptions].join(" "));
+    });
+    const group = field.name.endsWith("[]") ? field.closest("fieldset") : null;
+    (group ?? field).insertAdjacentElement("afterend", error);
   });
 }
 
 function showFieldErrors(form, errors = {}) {
+  let firstInvalid = null;
   Object.entries(errors).forEach(([name, message]) => {
     const field = form.elements.namedItem(name) ?? form.elements.namedItem(`${name}[]`);
     const error = form.querySelector(`[data-error-for="${name}"]`);
-    if (field instanceof form.ownerDocument.defaultView.RadioNodeList) return;
-    field?.setAttribute?.("aria-invalid", "true");
+    const fields = field instanceof form.ownerDocument.defaultView.RadioNodeList ? [...field] : [field].filter(Boolean);
+    fields.forEach((control) => control.setAttribute("aria-invalid", "true"));
+    if (!firstInvalid) firstInvalid = fields[0] ?? null;
     if (error) error.textContent = String(message);
   });
+  firstInvalid?.focus();
 }
 
 export function initJoinForm(form, fetchImpl = globalThis.fetch) {

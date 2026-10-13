@@ -40,8 +40,10 @@ export function initDiscussionsPage(root = document, storage = globalThis.localS
     const result = joinDiscussion(state, id);
     if (result.ok) {
       state = result.state;
-      saveDiscussionState(storage, state);
-      status.textContent = "Your interest is saved on this device. This is not a confirmed reservation.";
+      const persisted = saveDiscussionState(storage, state);
+      status.textContent = persisted
+        ? "Your interest is saved on this device. This is not a confirmed reservation."
+        : "Your interest is saved for this tab only because browser storage is unavailable. This is not a confirmed reservation.";
       render();
     }
   }

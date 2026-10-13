@@ -20,10 +20,10 @@
                 <div class="form-grid">
                     <p class="field field-full"><label for="task">Task name</label><input id="task" name="task" type="text" maxlength="120" placeholder="For example: revise database notes"></p>
                     <p class="field"><label for="category">Category</label><select id="category" name="category"><option>Study</option><option>Coding</option><option>Projects</option><option>Challenges</option></select></p>
-                    <p class="field"><label for="focus-duration">Focus minutes</label><input id="focus-duration" type="number" min="1" max="180" value="25"></p>
-                    <p class="field"><label for="break-duration">Break minutes</label><input id="break-duration" type="number" min="1" max="60" value="5"></p>
-                    <p class="field"><label for="daily-goal">Daily goal</label><input id="daily-goal" type="number" min="1" max="720" value="60"></p>
-                    <p class="field"><label for="weekly-goal">Weekly goal</label><input id="weekly-goal" type="number" min="1" max="5040" value="300"></p>
+                    <p class="field"><label for="focus-duration">Focus minutes</label><input id="focus-duration" type="number" min="1" max="180" step="1" value="25" required></p>
+                    <p class="field"><label for="break-duration">Break minutes</label><input id="break-duration" type="number" min="1" max="60" step="1" value="5" required></p>
+                    <p class="field"><label for="daily-goal">Daily goal</label><input id="daily-goal" type="number" min="1" max="720" step="1" value="60" required></p>
+                    <p class="field"><label for="weekly-goal">Weekly goal</label><input id="weekly-goal" type="number" min="1" max="5040" step="1" value="300" required></p>
                 </div>
                 <output id="timer" class="timer-display" aria-label="Time remaining" aria-live="polite">25:00</output>
                 <div class="timer-controls"><button type="button" data-timer-action="start">Start</button><button type="button" data-timer-action="pause" disabled>Pause</button><button type="button" data-timer-action="resume" disabled>Resume</button><button type="button" data-timer-action="stop" disabled>Stop</button></div>
