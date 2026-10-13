@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan a focused work session, set daily and weekly targets, and track consistent effort with the REPS focus tool.">
+    <link rel="icon" href="images/brand/reps-icon.png" type="image/png"><link rel="stylesheet" href="css/style.css">
+    <title>Focus Tool | REPS Student Club</title>
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header"><div class="header-inner">
+        <a class="brand" href="index.php" aria-label="REPS home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38"><span class="brand-word">reps</span></a>
+        <nav class="site-nav" aria-label="Main navigation"><ul><li><a href="index.php">Home</a></li><li><a href="about.html">About</a></li><li><a href="focus.html" aria-current="page">Focus</a></li><li><a href="discussions.html">Discussions</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="practice.html">Practice</a></li></ul></nav>
+        <a class="header-cta" href="join.html">Join REPS</a>
+    </div></header>
+    <main id="main-content" class="site-main" tabindex="-1">
+        <section class="section-shell page-heading"><p class="kicker">Protect the next block</p><h1>Give one task your full attention.</h1><p>Name the work, choose the duration, and let one focused rep move it forward.</p></section>
+        <section class="section-shell"><div class="section-grid timer-layout">
+            <section class="panel span-7" aria-labelledby="session-title"><h2 id="session-title">Set up your session</h2>
+                <div class="form-grid">
+                    <p class="field field-full"><label for="task">Task name</label><input id="task" name="task" type="text" maxlength="120" placeholder="For example: revise database notes"></p>
+                    <p class="field"><label for="category">Category</label><select id="category" name="category"><option>Study</option><option>Coding</option><option>Projects</option><option>Challenges</option></select></p>
+                    <p class="field"><label for="focus-duration">Focus minutes</label><input id="focus-duration" type="number" min="1" max="180" step="1" value="25" required></p>
+                    <p class="field"><label for="break-duration">Break minutes</label><input id="break-duration" type="number" min="1" max="60" step="1" value="5" required></p>
+                    <p class="field"><label for="daily-goal">Daily goal</label><input id="daily-goal" type="number" min="1" max="720" step="1" value="60" required></p>
+                    <p class="field"><label for="weekly-goal">Weekly goal</label><input id="weekly-goal" type="number" min="1" max="5040" step="1" value="300" required></p>
+                </div>
+                <output id="timer" class="timer-display" aria-label="Time remaining" aria-live="polite">25:00</output>
+                <div class="timer-controls"><button type="button" data-timer-action="start">Start</button><button type="button" data-timer-action="pause" disabled>Pause</button><button type="button" data-timer-action="resume" disabled>Resume</button><button type="button" data-timer-action="stop" disabled>Stop</button></div>
+            </section>
+            <aside class="panel panel-mint span-5" aria-labelledby="progress-title"><h2 id="progress-title">Your progress</h2><div class="metric-row"><div class="metric-box"><span class="metric-label">Completed reps</span><output id="completed-reps" class="metric-value">0</output></div><div class="metric-box"><span class="metric-label">Focused minutes</span><output id="focused-minutes" class="metric-value">0</output></div></div><p class="field"><label for="daily-progress">Daily progress</label><progress id="daily-progress" value="0" max="60">0 / 60</progress></p><p class="field"><label for="weekly-progress">Weekly progress</label><progress id="weekly-progress" value="0" max="300">0 / 300</progress></p><p id="focus-status" role="status">Session controls are preparing.</p></aside>
+        </div></section>
+    </main>
+    <footer class="site-footer"><div class="footer-inner"><div><div class="footer-brand">Protect the rep.</div><p>One useful task at a time.</p></div><div class="footer-meta"><p>&copy; <span data-current-year>2026</span> REPS</p><p><a href="about.html">Why focus matters</a></p></div></div></footer>
+    <script type="module" src="js/site.js"></script><script type="module" src="js/focus/page.js"></script>
+</body>
+</html>

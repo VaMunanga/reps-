@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>REPS Day 2 · Spacing</title><link rel="stylesheet" href="../assets/teaching.css"><script src="../assets/teaching.js" defer></script></head>
+<body><main>
+<header><p class="eyebrow">REPS · DAY 2 · LESSON 2 · 15–20 MINUTES</p><h1>Give your content breathing room</h1><p>One practical win: centre the main content and give it comfortable space without breaking narrow screens.</p><p><a href="0001-day-2-connect-css.html">Previous lesson</a> · <a href="../DAY-2-PRACTICE.md">Day 2 practice path</a> · <a href="../reference/day-2-css.html">Quick reference</a></p></header>
+<section><h2>Before you start</h2><p>Home already links to <code>css/style.css</code>. Add that same link to the other five pages first (D2-01). Use <code>css/style.css</code> for the exercises below.</p><p>From memory, write a rule that changes heading colour and explain its selector. Then continue.</p></section>
+<section><h2>A box has inside and outside space</h2><p><strong>Content</strong> is the text or image. <strong>Padding</strong> is the space between that content and its border. <strong>Border</strong> is the edge around the box. <strong>Margin</strong> is space outside the border.</p><p>Imagine a framed picture: padding is breathing room inside the frame; margin separates the frame from neighbouring objects. <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model">Recommended reading: MDN box model</a>.</p>
+<form data-quiz data-answer="a" data-correct="Correct. Padding creates space inside the border." data-retry="Try again: the task asks for space inside the border, which is padding."><p>A section's text touches its border. Which change addresses that?</p><label><input type="radio" name="space" value="a"> Increase its padding</label><label><input type="radio" name="space" value="b"> Increase its margin</label><label><input type="radio" name="space" value="c"> Increase its height</label><button type="submit">Check answer</button><p class="feedback" aria-live="polite"></p></form></section>
+<section><h2>Build one container</h2><p>Type these rules into your site stylesheet. Read each comment and predict the result before refreshing.</p><pre><code>* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px;
+}</code></pre><p><code>*</code> selects all elements. <code>border-box</code> includes padding and border within a declared width. <code>max-width</code> caps the main box without forcing that width onto a small screen. <code>margin: 0 auto</code> sets top/bottom margins to zero and shares spare horizontal space between the sides.</p><p><code>padding: 16px</code> adds internal space on all four sides. There is no fixed height: your content can grow. <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model">Source: MDN box model</a>.</p></section>
+<section><h2>Put in three reps</h2><ol><li><strong>Observe:</strong> Add <code>border: 1px solid red;</code> inside the main rule temporarily. Open Home. Change padding from 16px to 32px. Which space changes? Restore 16px.</li><li><strong>Transfer:</strong> Without copying the main rule, write a rule for <code>main section</code> that gives each section 16px padding and 24px space below it. Hint: outside space uses a margin property.</li><li><strong>Verify:</strong> Resize Home and About to 320px wide using the browser's responsive tools. Check that text wraps and there is no sideways scrolling. Remove your debug border.</li></ol><p>Change one thing at a time so the effect is clear. If the layout surprises you, tell your teacher what you predicted and what happened.</p></section>
+<section><h2>Check your prediction</h2><p>A box uses <code>width: 200px; padding: 20px; border: 2px solid;</code> and <code>box-sizing: border-box</code>. What is its total border-to-border width?</p><form data-quiz data-answer="c" data-correct="Correct: 200 pixels. Border-box includes the padding and border inside the declared width; margins remain outside." data-retry="With border-box, padding and border are included in the declared width. Try again."><label><input type="radio" name="width" value="a"> 244 pixels</label><label><input type="radio" name="width" value="b"> 240 pixels</label><label><input type="radio" name="width" value="c"> 200 pixels</label><button type="submit">Check answer</button><p class="feedback" aria-live="polite"></p></form></section>
+<section><h2>Send your work for feedback</h2><p>Reply <strong>“D2-01 and D2-02 done”</strong> when you've checked them. Explain padding versus margin, and why you chose max-width. I will inspect the files before we move to variables and navigation.</p><p>Ask follow-up questions whenever you need help. Tomorrow, recall the difference between padding and margin before opening this lesson.</p></section>
+</main></body></html>

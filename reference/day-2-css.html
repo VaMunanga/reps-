@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>REPS · CSS quick reference</title><link rel="stylesheet" href="../assets/teaching.css"></head>
+<body><main><header><p class="eyebrow">REPS · DAY 2 REFERENCE</p><h1>Connecting and reading CSS</h1><a href="../lessons/0001-day-2-connect-css.html">Return to lesson 1</a></header>
+<section><h2>Connect the files</h2><pre><code>REPS v1/
+  index.html
+  about.html
+  css/
+    style.css</code></pre><p>Inside each page's <code>&lt;head&gt;</code>:</p><pre><code>&lt;link rel="stylesheet" href="css/style.css"&gt;</code></pre><p>A shared stylesheet lets several pages use the same rules. <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started#external_stylesheets">MDN: external stylesheets</a>.</p></section>
+<section><h2>Vocabulary</h2><dl><dt>Selector</dt><dd>Chooses the elements targeted by a CSS rule.</dd><dt>Property</dt><dd>The aspect to change, such as text colour.</dd><dt>Value</dt><dd>The setting for that property.</dd><dt>Declaration</dt><dd>A property and value together, such as <code>color: blue;</code>.</dd><dt>Stylesheet</dt><dd>A file containing CSS rules.</dd></dl><pre><code>h1 {              /* selector */
+    color: blue;  /* property: value; */
+}</code></pre><p><code>color</code> changes text colour; <code>background-color</code> changes the background. <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Getting_started">MDN: CSS basics</a>.</p></section>
+<section><h2>When nothing changes</h2><ol><li>Save the HTML and CSS.</li><li>Check the actual filename and folder.</li><li>Put the link in the head.</li><li>Check braces, the colon and the selector.</li><li>Refresh the correct page.</li></ol><p>Ask your teacher to inspect your files if it still does not work.</p></section>
+<section><h2>Spacing vocabulary</h2><dl><dt>Content</dt><dd>The text, image or other content inside the box.</dd><dt>Padding</dt><dd>Space inside the border.</dd><dt>Border</dt><dd>The edge surrounding content and padding.</dd><dt>Margin</dt><dd>Space outside the border.</dd><dt>Border-box</dt><dd>A sizing mode that includes padding and border within a declared width; margin remains outside.</dd></dl><pre><code>main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px;
+}</code></pre><p>This caps the width, centres the container when there is spare horizontal space and adds internal breathing room. <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model">MDN: box model</a>.</p><a href="../lessons/0002-day-2-spacing.html">Spacing practice</a> · <a href="../DAY-2-PRACTICE.md">Full Day 2 practice path</a></section>
+</main></body></html>
