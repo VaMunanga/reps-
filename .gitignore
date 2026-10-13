@@ -1,2 +1,6 @@
 # Local browser profiles, screenshots and temporary verification output.
 .scratch/
+.env.local
+node_modules/
+.worktrees/
+.superpowers/
