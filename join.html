@@ -1,64 +1,33 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="REPS student productivity and collaboration club at Harare Institute of Technology.">
-    <title>Join | REPS Student Club</title>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register your interest in the proposed REPS student club and share what you want to study, practise, or build at HIT.">
+    <link rel="icon" href="images/brand/reps-icon.png" type="image/png"><link rel="stylesheet" href="css/style.css">
+    <title>Join REPS | Membership Interest</title>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <header class="site-header">
-        <div class="header-inner">
-        <a class="brand" href="index.html" aria-label="REPS Home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38">reps</a>
-        <nav aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="focus.html">Focus</a></li>
-                <li><a href="discussions.html">Discussions</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="join.html" aria-current="page">Join</a></li>
-            </ul>
-        </nav>
-        </div>
-    </header>
-    <main id="main-content" tabindex="-1">
-        <div class="page-heading">
-            <p class="eyebrow">REPS / Join</p>
-            <h1>Start your next chapter with REPS.</h1>
-        </div>
-        <p>Express your interest in the proposed REPS club. This form is a Day 1 prototype; submissions will be enabled when PHP processing is ready.</p>
-        <section class="card">
-            <h2>Membership interest</h2>
-            <form>
-                <div class="form-grid">
-                <p><label for="full-name">Full name (required)</label> <input id="full-name" name="full_name" autocomplete="name" required></p>
-                <p><label for="email">Email (required)</label> <input id="email" name="email" type="email" autocomplete="email" required></p>
-                <p><label for="telephone">Telephone (optional)</label> <input id="telephone" name="telephone" type="tel" autocomplete="tel"></p>
-                <p><label for="programme">Programme / department (required)</label> <input id="programme" name="programme" required></p>
-                <p><label for="year">Academic year (required)</label> <select id="year" name="year" required><option value="">Select your year</option><option value="1">Year 1</option><option value="2">Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option></select></p>
-                </div>
-                <fieldset>
-                    <legend>Interests</legend>
-                    <label><input type="checkbox" name="interests[]" value="study"> Study</label>
-                    <label><input type="checkbox" name="interests[]" value="coding"> Coding</label>
-                    <label><input type="checkbox" name="interests[]" value="projects"> Projects</label>
-                    <label><input type="checkbox" name="interests[]" value="challenges"> Challenges</label>
-                </fieldset>
-                <p><label for="goal">Main goal (required)</label> <textarea id="goal" name="goal" required></textarea></p>
-                <p><label for="working-time">Preferred working time</label> <select id="working-time" name="working_time"><option value="">Select a time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></p>
-                <p><label for="message">Message (optional)</label> <textarea id="message" name="message"></textarea></p>
-                <button type="button" disabled>Submit interest (coming soon)</button>
-            </form>
-        </section>
+    <header class="site-header"><div class="header-inner"><a class="brand" href="index.php" aria-label="REPS home"><img src="images/brand/reps-icon.png" alt="" width="38" height="38"><span class="brand-word">reps</span></a><nav class="site-nav" aria-label="Main navigation"><ul><li><a href="index.php">Home</a></li><li><a href="about.html">About</a></li><li><a href="focus.html">Focus</a></li><li><a href="discussions.html">Discussions</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="practice.html">Practice</a></li></ul></nav><a class="header-cta" href="join.html" aria-current="page">Join REPS</a></div></header>
+    <main id="main-content" class="site-main" tabindex="-1">
+        <section class="section-shell page-heading"><p class="kicker">Register your interest</p><h1>Make your next rep count.</h1><p>Tell us what you want to practise. Your response will help shape a useful first programme.</p></section>
+        <section class="section-shell"><div class="section-grid"><section class="panel span-8" aria-labelledby="membership-title"><h2 id="membership-title">Membership interest</h2><form id="join-form" method="post">
+            <div class="form-grid">
+                <p class="field"><label for="full-name">Full name</label><input id="full-name" name="full_name" autocomplete="name" maxlength="120" required></p>
+                <p class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required></p>
+                <p class="field"><label for="telephone">Telephone <span class="field-note">optional</span></label><input id="telephone" name="telephone" type="tel" autocomplete="tel" maxlength="32"></p>
+                <p class="field"><label for="programme">Programme or department</label><input id="programme" name="programme" maxlength="120" required></p>
+                <p class="field"><label for="year">Academic year</label><select id="year" name="year" required><option value="">Select your year</option><option value="1">Year 1</option><option value="2">Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5</option></select></p>
+                <p class="field"><label for="working-time">Preferred working time</label><select id="working-time" name="working_time"><option value="">Select a time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></p>
+                <fieldset class="field-full"><legend>Interests</legend><div class="check-grid"><label><input type="checkbox" name="interests[]" value="study"> Study</label><label><input type="checkbox" name="interests[]" value="coding"> Coding</label><label><input type="checkbox" name="interests[]" value="projects"> Projects</label><label><input type="checkbox" name="interests[]" value="challenges"> Challenges</label></div></fieldset>
+                <p class="field field-full"><label for="goal">Main goal</label><textarea id="goal" name="goal" maxlength="1000" required></textarea></p>
+                <p class="field field-full"><label for="message">Message <span class="field-note">optional</span></label><textarea id="message" name="message" maxlength="2000"></textarea></p>
+                <label class="consent field-full"><input type="checkbox" name="consent" value="1" required> I agree that REPS may store this information to contact me about the proposed club.</label>
+            </div>
+            <div class="actions"><button type="submit" disabled>Submit interest</button></div>
+        </form></section><aside class="panel panel-mint span-4"><h2>Your data stays focused.</h2><p>REPS collects only the details on this form. There is no account, password, public profile, or member directory in this release.</p><p>Submission is temporarily disabled while the secure database connection is prepared.</p></aside></div></section>
     </main>
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <p>&copy; 2026 REPS. All rights reserved.</p>
-            <p>Small Reps. Big Progress.</p>
-        </div>
-    </footer>
+    <footer class="site-footer"><div class="footer-inner"><div><div class="footer-brand">Start with intent.</div><p>Your interests can shape the first REPS programme.</p></div><div class="footer-meta"><p>&copy; <span data-current-year>2026</span> REPS</p><p><a href="about.html">How REPS works</a></p></div></div></footer>
+    <script type="module" src="js/site.js"></script>
 </body>
 </html>

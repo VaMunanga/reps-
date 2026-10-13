@@ -1,11 +1,19 @@
+import { access } from "node:fs/promises";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   loadPage,
   localAssetExists,
+  projectRoot,
   productionPages,
 } from "./helpers/load-page.js";
 
 describe("production page contract", () => {
+  it("serves the root homepage through PHP and retires the HTML duplicate", async () => {
+    await expect(access(path.join(projectRoot, "index.php"))).resolves.toBeUndefined();
+    await expect(access(path.join(projectRoot, "index.html"))).rejects.toThrow();
+  });
+
   it("uses a unique, descriptive title on every page", async () => {
     const titles = [];
 
@@ -36,14 +44,29 @@ describe("production page contract", () => {
       expect(skipLink?.getAttribute("href")).toBe("#main-content");
     });
 
-    it("identifies exactly one current navigation destination", async () => {
+    it("identifies exactly one current header destination", async () => {
       const document = await loadPage(page);
-      expect(document.querySelectorAll('nav a[aria-current="page"]')).toHaveLength(1);
+      expect(document.querySelectorAll('.site-header a[aria-current="page"]')).toHaveLength(1);
     });
 
     it("loads a shared JavaScript module", async () => {
       const document = await loadPage(page);
-      expect(document.querySelector('script[type="module"][src]')).not.toBeNull();
+      const sharedModule = document.querySelector('script[type="module"][src="js/site.js"]');
+      expect(sharedModule).not.toBeNull();
+    });
+
+    it("uses the shared atmospheric shell hooks", async () => {
+      const document = await loadPage(page);
+
+      expect(document.querySelector(".site-header")).not.toBeNull();
+      expect(document.querySelector(".site-nav")).not.toBeNull();
+      expect(document.querySelector(".section-shell")).not.toBeNull();
+      expect(document.querySelector(".site-footer")).not.toBeNull();
+    });
+
+    it("does not link to the retired HTML homepage", async () => {
+      const document = await loadPage(page);
+      expect(document.querySelector('a[href="index.html"]')).toBeNull();
     });
 
     it("does not publish prototype or coming-soon copy", async () => {
