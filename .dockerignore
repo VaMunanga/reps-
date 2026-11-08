@@ -1,5 +1,8 @@
 .git
 .gitignore
+.agents
+.neon
+.playwright-mcp
 .env
 .env.*
 .qa

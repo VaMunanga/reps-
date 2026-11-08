@@ -4,6 +4,8 @@
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Plan a focused work session, set daily and weekly targets, and track consistent effort with the REPS focus tool.">
     <link rel="icon" href="images/brand/reps-icon.png" type="image/png"><link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/focus.css">
+    <link rel="stylesheet" href="css/focus-groups.css">
     <title>Focus Tool | REPS Student Club</title>
 </head>
 <body>
@@ -16,19 +18,45 @@
     <main id="main-content" class="site-main" tabindex="-1">
         <section class="section-shell page-heading"><p class="kicker">Protect the next block</p><h1>Give one task your full attention.</h1><p>Name the work, choose the duration, and let one focused rep move it forward.</p></section>
         <section class="section-shell"><div class="section-grid timer-layout">
-            <section class="panel span-7" aria-labelledby="session-title"><h2 id="session-title">Set up your session</h2>
-                <div class="form-grid">
-                    <p class="field field-full"><label for="task">Task name</label><input id="task" name="task" type="text" maxlength="120" placeholder="For example: revise database notes"></p>
-                    <p class="field"><label for="category">Category</label><select id="category" name="category"><option>Study</option><option>Coding</option><option>Projects</option><option>Challenges</option></select></p>
+            <section class="panel span-7 focus-workspace" aria-labelledby="session-title">
+                <h2 id="session-title" class="focus-heading">One task. One rep.</h2>
+                <p class="field"><label for="task">What will you get done?</label><input id="task" name="task" type="text" maxlength="120" placeholder="Practise Java inheritance" autocomplete="off"></p>
+                <p id="current-task" class="current-task" hidden></p>
+                <div class="focus-presets" aria-label="Focus and break presets"><button type="button" data-preset="25,5">25 / 5</button><button type="button" data-preset="50,10">50 / 10</button><span>focus / rest</span></div>
+                <div id="clock" class="focus-clock" data-status="idle" data-phase="focus">
+                    <div class="clock-halo" aria-hidden="true"></div><div class="clock-ripple" aria-hidden="true"></div>
+                    <svg class="clock-progress" viewBox="0 0 320 320" aria-hidden="true"><circle class="ring-track" cx="160" cy="160" r="151"/><circle id="clock-ring" cx="160" cy="160" r="151" pathLength="100" stroke-dasharray="100" stroke-dashoffset="0"/></svg>
+                    <div class="clock-face"><output id="timer" role="timer" aria-live="off" aria-label="25:00 remaining"><svg id="clock-digits" viewBox="-2 -2 91 22" aria-hidden="true"></svg></output><svg class="clock-check" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><p id="clock-caption">Ready when you are.</p></div>
+                </div>
+                <div class="timer-controls focus-actions"><button id="timer-primary" type="button" disabled>Start</button><button id="timer-end" class="quiet-button" type="button" disabled>End</button></div>
+                <p id="focus-status" role="status">Session controls are preparing.</p>
+                <p id="settling-reminder" class="focus-note">Settling into focus can take a few minutes. Give yourself a moment.</p>
+                <p id="today-summary" class="today-summary">Today: 0 reps · 0 focused minutes</p>
+                <p id="storage-status" class="focus-note" role="status"></p>
+                <p id="recording-status" class="focus-note" role="status"></p>
+                <details class="focus-options"><summary>Session options</summary><div class="form-grid">
                     <p class="field"><label for="focus-duration">Focus minutes</label><input id="focus-duration" type="number" min="1" max="180" step="1" value="25" required></p>
                     <p class="field"><label for="break-duration">Break minutes</label><input id="break-duration" type="number" min="1" max="60" step="1" value="5" required></p>
-                    <p class="field"><label for="daily-goal">Daily goal</label><input id="daily-goal" type="number" min="1" max="720" step="1" value="60" required></p>
-                    <p class="field"><label for="weekly-goal">Weekly goal</label><input id="weekly-goal" type="number" min="1" max="5040" step="1" value="300" required></p>
-                </div>
-                <output id="timer" class="timer-display" aria-label="Time remaining" aria-live="polite">25:00</output>
-                <div class="timer-controls"><button type="button" data-timer-action="start">Start</button><button type="button" data-timer-action="pause" disabled>Pause</button><button type="button" data-timer-action="resume" disabled>Resume</button><button type="button" data-timer-action="stop" disabled>Stop</button></div>
+                    <p><button type="button" data-preset="90,20" class="quiet-button">Use 90 / 20</button></p>
+                    <p class="field"><label for="category">Category</label><select id="category"><option>Study</option><option>Coding</option><option>Projects</option><option>Challenges</option></select></p>
+                    <label class="check-field"><input id="motion" type="checkbox" checked> Gentle clock movement</label><label class="check-field"><input id="reminder" type="checkbox" checked> Settling-in reminder</label>
+                </div><p class="focus-note">Choose durations that suit you. Presets are adjustable defaults.</p></details>
             </section>
-            <aside class="panel panel-mint span-5" aria-labelledby="progress-title"><h2 id="progress-title">Your progress</h2><div class="metric-row"><div class="metric-box"><span class="metric-label">Completed reps</span><output id="completed-reps" class="metric-value">0</output></div><div class="metric-box"><span class="metric-label">Focused minutes</span><output id="focused-minutes" class="metric-value">0</output></div></div><p class="field"><label for="daily-progress">Daily progress</label><progress id="daily-progress" value="0" max="60">0 / 60</progress></p><p class="field"><label for="weekly-progress">Weekly progress</label><progress id="weekly-progress" value="0" max="300">0 / 300</progress></p><p id="focus-status" role="status">Session controls are preparing.</p></aside>
+            <aside class="panel panel-mint span-5 focus-sidebar" aria-labelledby="progress-title">
+                <h2 id="progress-title" class="focus-heading">Keep showing up.</h2>
+                <section id="account-progress" aria-labelledby="account-progress-title" hidden>
+                    <h3 id="account-progress-title">Your account progress</h3>
+                    <p class="focus-note">Confirmed solo and group participation across devices.</p>
+                    <div class="metric-row"><div class="metric-box"><span class="metric-label">Completed reps</span><output id="account-reps" class="metric-value" aria-live="off">0</output></div><div class="metric-box"><span class="metric-label">Focused minutes</span><output id="account-minutes" class="metric-value" aria-live="off">0</output></div></div>
+                    <p class="focus-note">Device history below is kept separately and is not added to your account totals.</p>
+                </section>
+                <p class="focus-note">Your recorded progress on this device</p>
+                <div class="metric-row"><div class="metric-box"><span class="metric-label">Completed reps</span><output id="completed-reps" class="metric-value" aria-live="off">0</output></div><div class="metric-box"><span class="metric-label">Focused minutes</span><output id="focused-minutes" class="metric-value" aria-live="off">0</output></div></div>
+                <p class="field"><label for="daily-progress">Today on this device</label><progress id="daily-progress" value="0" max="60">0 / 60</progress></p><p class="field"><label for="weekly-progress">This week on this device</label><progress id="weekly-progress" value="0" max="300">0 / 300</progress></p>
+                <details class="focus-options"><summary>Adjust device goals</summary><div class="form-grid"><p class="field"><label for="daily-goal">Daily minutes</label><input id="daily-goal" type="number" min="1" max="720" value="60" required></p><p class="field"><label for="weekly-goal">Weekly minutes</label><input id="weekly-goal" type="number" min="1" max="5040" value="300" required></p></div></details>
+                <details class="focus-options"><summary>Completion alerts</summary><label class="check-field"><input id="sound" type="checkbox"> Gentle completion sound (repeats for 5 seconds)</label><div class="secondary-actions"><button id="enable-notifications" type="button" class="quiet-button">Enable notifications</button><button id="test-alert" type="button" class="quiet-button">Test alert</button></div><p id="alert-status" class="focus-note" role="status">In-app and tab-title alerts are on. System alerts depend on your browser.</p><p class="focus-note">Keep this page open. Closed-page alerts are not configured. Locked or suspended devices may delay alerts.</p></details>
+                <div id="focus-extras"></div>
+            </aside>
         </div></section>
     </main>
     <footer class="site-footer"><div class="footer-inner"><div><div class="footer-brand">Protect the rep.</div><p>One useful task at a time.</p></div><div class="footer-meta"><p>&copy; <span data-current-year>2026</span> REPS</p><p><a href="about.html">Why focus matters</a></p></div></div></footer>

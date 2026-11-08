@@ -1,0 +1,51 @@
+.focus-heading { font-size: clamp(1.6rem, 3vw, 2.5rem); line-height: 1.1; }
+.focus-workspace { min-width: 0; }
+.focus-presets, .secondary-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+.focus-presets button, .quiet-button { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); box-shadow: none; padding: .6rem .9rem; }
+.focus-presets button[aria-pressed="true"] { background: var(--cobalt-strong); color: white; }
+.focus-presets span, .focus-note { color: var(--ink-soft); font-size: .8rem; }
+.focus-clock { --ring-color: var(--cobalt-strong); position: relative; width: min(100%, 22rem); aspect-ratio: 1; margin: 1.75rem auto; isolation: isolate; contain: paint; border-radius: 50%; box-shadow: 0 12px 28px rgb(50 58 78 / .09), inset 0 1px 0 rgb(255 255 255 / .65); background: var(--paper); }
+.clock-progress { position: absolute; inset: 2%; width: 96%; height: 96%; overflow: visible; transform: rotate(-90deg); fill: none; stroke-width: 1.6; }
+.ring-track { stroke: var(--line); }
+#clock-ring { stroke: var(--ring-color); stroke-linecap: round; transition: stroke-dashoffset .2s linear, stroke .2s; }
+.clock-face { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; }
+#timer { display: block; width: 100%; }
+#clock-digits { display: block; width: 100%; max-height: 5rem; fill: var(--ink); overflow: visible; }
+#clock-caption { font-size: .75rem; margin: .7rem 0 0; min-height: 2.5em; max-width: 23ch; }
+.clock-check { width: 1.3rem; height: 1.3rem; fill: none; stroke: var(--ring-color); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; display: none; margin-top: .7rem; }
+.clock-halo, .clock-ripple { position: absolute; inset: 5%; border-radius: 50%; pointer-events: none; z-index: -1; border: 1px solid var(--ring-color); opacity: 0; }
+.focus-clock[data-status="paused"] { --ring-color: #777fa2; }
+.focus-clock[data-phase="break"] { --ring-color: var(--mint-ink); }
+.focus-clock[data-phase="break"][data-status="paused"] { --ring-color: #638177; }
+.focus-clock[data-status="complete"] .clock-check { display: block; }
+.focus-clock[data-event="start"] { animation: clock-start .45s ease-out; }
+.focus-clock[data-event="start"] .clock-progress { animation: ring-in .45s ease-out; }
+.focus-clock[data-event="complete"] .clock-ripple { animation: clock-ripple .8s ease-out; }
+.focus-clock[data-event="complete"] .clock-progress { animation: ring-pulse .75s ease-out; }
+.focus-clock[data-event="complete"] .clock-check path { stroke-dasharray: 25; animation: check-in .45s ease-out; }
+.focus-clock[data-phase="break"][data-status="running"] .clock-halo { opacity: .22; animation: clock-breathe 6s ease-in-out infinite; }
+.digit-change { transform-origin: center; animation: digit-in .18s ease-out; }
+.focus-clock[data-phase="break"] .digit-change, .focus-clock[data-status="paused"] * { animation: none !important; }
+.focus-actions { justify-content: center; }
+.focus-actions #timer-primary { min-width: 10rem; }
+.focus-workspace #focus-status, .today-summary { text-align: center; margin: 1rem auto; }
+.focus-workspace #settling-reminder { text-align: center; margin: 0 auto 1rem; }
+.current-task { overflow-wrap: anywhere; text-align: center; font-weight: 600; }
+.focus-options { border-top: 1px solid var(--line); padding: 1rem 0; }
+.focus-options summary { cursor: pointer; min-height: 2.5rem; }
+.focus-options .form-grid { margin-top: 1rem; }
+.check-field { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem; font-size: .85rem; }
+.check-field input { width: 1.1rem; height: 1.1rem; accent-color: var(--cobalt-strong); flex: 0 0 auto; }
+.focus-sidebar .metric-row { margin-top: 1.5rem; }
+.music-viewport { width: 100%; min-width: 200px; min-height: 240px; margin: 1rem 0; }
+.music-viewport iframe { display: block; width: 100%; min-width: 200px; min-height: 240px; border: 0; }
+.focus-workspace[data-motion="off"] *, .focus-workspace[data-hidden="true"] * { animation: none !important; transition: none !important; }
+@keyframes clock-start { 0% { transform: scale(1); } 25% { transform: scale(.97); } 100% { transform: scale(1); } }
+@keyframes ring-in { from { opacity: .2; } to { opacity: 1; } }
+@keyframes digit-in { from { opacity: .5; transform: translateY(1px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes clock-ripple { from { opacity: .3; transform: scale(.86); } to { opacity: 0; transform: scale(1.1); } }
+@keyframes ring-pulse { 40% { opacity: .35; } }
+@keyframes check-in { from { stroke-dashoffset: 25; } to { stroke-dashoffset: 0; } }
+@keyframes clock-breathe { 50% { transform: scale(1.02); } }
+@media (prefers-reduced-motion: reduce) { .focus-clock, .focus-clock * { animation: none !important; transition: none !important; } }
+@media (max-width: 600px) { .focus-workspace, .focus-sidebar { padding: 1.25rem; } .focus-clock { margin: 1.5rem auto; } .clock-face { padding: 1.8rem; } .focus-presets { gap: .4rem; } .focus-actions { flex-wrap: nowrap; } .focus-options .form-grid { grid-template-columns: 1fr; } }
