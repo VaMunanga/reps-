@@ -15,7 +15,14 @@ final class FocusService {
         $row = $this->one('SELECT * FROM focus_sessions WHERE token_hash=? AND expires_at>now()',[$this->sessionHash]);
         if (!$row) $this->rotate(null); else $this->session = $row;
     }
-    private function query(string $sql, array $args=[]): PDOStatement { $q=$this->db->prepare($sql); $q->execute($args); return $q; }
+    private function query(string $sql, array $args=[]): PDOStatement {
+        try { $q=$this->db->prepare($sql); $q->execute($args); return $q; }
+        catch (PDOException $e) {
+            // Fingerprint static SQL only; never log parameters or exception text.
+            error_log('Focus SQL failure: '.substr(hash('sha256',$sql),0,12).' state='.preg_replace('/[^A-Z0-9]/','',(string)$e->getCode()));
+            throw $e;
+        }
+    }
     private function one(string $sql,array $args=[]): ?array { return $this->query($sql,$args)->fetch() ?: null; }
     private function stamp(float $time): string { return (new DateTimeImmutable('@'.sprintf('%.6F',$time)))->format('Y-m-d H:i:s.uP'); }
     private function time(string $stamp): float { return (float)(new DateTimeImmutable($stamp))->format('U.u'); }
