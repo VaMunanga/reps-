@@ -1,0 +1,15 @@
+.focus-groups { text-align: left; }
+.focus-groups > summary { cursor: pointer; }
+.focus-groups [data-group-content] { display: grid; gap: 1rem; padding-top: 1rem; }
+.focus-groups form, .focus-groups [data-group-view] { display: grid; gap: .8rem; }
+.focus-groups label { display: grid; gap: .35rem; }
+.focus-groups label:has(input[type="checkbox"]) { display: flex; align-items: baseline; gap: .5rem; }
+.focus-groups input:not([type="checkbox"]), .focus-groups select { width: 100%; min-width: 0; box-sizing: border-box; padding: .65rem; font: inherit; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: .35rem; }
+.focus-groups button { justify-self: start; padding: .6rem .8rem; font: inherit; cursor: pointer; }
+.focus-groups details { border-top: 1px solid #8885; padding-top: .75rem; }
+.focus-groups details > summary { cursor: pointer; margin-bottom: .75rem; }
+.focus-groups p { margin: .3rem 0; overflow-wrap: anywhere; }
+.focus-groups [data-group-countdown] { font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.focus-groups .group-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.focus-groups .group-hint, .focus-groups [data-group-timezone] { font-size: .875rem; opacity: .8; }
+.focus-groups [data-group-status]:empty { display: none; }

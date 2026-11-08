@@ -118,6 +118,40 @@ Keep the service on the **Free** compute plan. Do not upgrade it or add paid res
 6. Confirm that exact record in Neon, then delete only that record.
 7. Recheck the Join success and error states from the public URL.
 
+## Focus timer, accounts and private groups
+
+The Focus upgrade remains in the working tree until released. The existing public Render URL does not automatically reflect uncommitted changes.
+
+Apply `database/migrations/002_focus_groups.sql` to an isolated Neon branch before applying it to production. It adds account, hashed-session, group, invitation, schedule/template, participation, interval, credit, and explicit-forfeit tables. It does not change `membership_interests`. The migration can be repeated, including its additive solo pause/deadline columns.
+
+With the intended direct connection held only in the process environment, run:
+
+```powershell
+node scripts/run-focus-migration.mjs
+```
+
+The helper reads `DATABASE_URL_UNPOOLED`. The application uses `FOCUS_DATABASE_URL` when supplied, otherwise the existing `DATABASE_URL`. Keep pooled application and direct migration URLs separate. Do not put either in browser code or logs.
+
+Runtime requirements are PHP 8.3+, PDO PostgreSQL, HTTPS, and Argon2id password hashing support. The existing Docker runtime provides PostgreSQL support. Account sessions live in PostgreSQL and survive host restarts; production cookies are Secure, HttpOnly, and SameSite=Strict. No account is created from an existing membership enquiry.
+
+Password recovery is optional until these encrypted runtime variables are configured:
+
+- `RESEND_API_KEY`: email delivery credential.
+- `FOCUS_MAIL_FROM`: an approved sender address/domain for that provider.
+- `FOCUS_PUBLIC_URL`: the canonical HTTPS site origin, such as `https://reps-student-club.onrender.com`.
+
+Recovery also needs PHP curl. Without those prerequisites, the interface reports that recovery email is unavailable. Test real delivery and the single-use reset flow before advertising account recovery.
+
+Solo Focus keeps its existing device-local totals and settings. New sessions use transactional IndexedDB with a legacy-data migration; the old localStorage value stays intact. Historical daily rep counts were never stored and cannot be reconstructed. Signed-in recorded participation uses server-confirmed intervals separately; device totals are not imported into group rankings. A missing connection/heartbeat can reduce recorded server time while the device timer continues. Anonymous cross-device overlap cannot be detected.
+
+The official [YouTube IFrame API](https://developers.google.com/youtube/iframe_api_reference) is contacted only when Music opens. The configured video is in `js/focus/music.js`; availability and embedding restrictions can change. Verify real playback on the deployed origin, including failure handling and collapsing the panel. No Data API key is required.
+
+Completion notifications use `focus-sw.js` where supported, with explicit permission and audio-unlock controls. There is no offline cache or service-worker timer. This free deployment has no scheduled Web Push sender: closed-page alerts are not implemented. Adding them requires a reliable scheduler, VAPID keys, subscription persistence, delivery/retry support, and cancellation/rescheduling after timer changes. Do not describe locked-device or suspended-page delivery as guaranteed.
+
+For local PHP installations with an older libpq that reports Neon's missing endpoint/SNI error, set `PGOPTIONS` to `endpoint=<test-endpoint-id>` in the test-server process. This was necessary for local verification; it does not require weakening TLS or changing production settings. The production image should use current libpq.
+
+Before release, follow `docs/focus-verification.md`. Browser layout, actual YouTube playback, OS notifications, and physical-device behavior must be verified independently of jsdom tests.
+
 ## Rollback
 
 Application rollback: redeploy the last known-good commit while leaving the additive membership table in place. The migration is idempotent, and older static pages do not depend on the table.

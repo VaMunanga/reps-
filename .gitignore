@@ -1,6 +1,7 @@
 # Local browser profiles, screenshots and temporary verification output.
 .scratch/
 .qa/
+.playwright-mcp/
 .env.local
 node_modules/
 .worktrees/
