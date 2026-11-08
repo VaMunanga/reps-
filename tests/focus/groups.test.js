@@ -31,6 +31,18 @@ async function setup({ signedIn = true, hash = '', fail = false, handler } = {})
 }
 
 describe('Study together', () => {
+  it('shows immediate submission feedback and restores controls after a rejected sign-in', async () => {
+    let rejectLogin;
+    const s = await setup({signedIn:false, handler: action => action === 'login' ? new Promise(resolve => { rejectLogin = () => resolve({ok:false,json:async()=>({message:'Email or password is incorrect.'})}); }) : null});
+    await s.open();
+    const form = s.doc.querySelector('[data-auth-login]');
+    form.dispatchEvent(new s.dom.window.Event('submit',{bubbles:true,cancelable:true}));
+    expect(form.textContent).toContain('Signing in');
+    expect(form.querySelector('button').disabled).toBe(true);
+    await Promise.resolve(); await Promise.resolve(); rejectLogin(); await s.ui.flush();
+    expect(form.textContent).toContain('Email or password is incorrect.');
+    expect(form.querySelector('button').disabled).toBe(false); s.ui.destroy();
+  });
   it.each(['[data-participation=join]', '[data-invite-link]', '[data-group-view] h3'])('keeps shared schedules fresh while %s has focus', async selector => {
     let updated = false;
     const s = await setup({ handler: action => action === 'group_view' && updated ? { ok: true, json: async () => ({ ...structuredClone(view), schedule: { ...view.schedule, task: 'Updated shared outcome' } }) } : null });

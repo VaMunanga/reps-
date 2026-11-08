@@ -146,11 +146,23 @@ export function initGroups(root, win, { fetchFn = win.fetch?.bind(win), now = Da
   });
   content.addEventListener('submit', event => {
     event.preventDefault(); const form = event.target;
+    if (form.getAttribute('aria-busy') === 'true') return;
+    const authentication = form.matches('[data-auth-login], [data-auth-register]');
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (authentication) {
+      form.setAttribute('aria-busy', 'true'); submitButton.disabled = true;
+      formMessage(form, form.matches('[data-auth-login]') ? 'Signing in…' : 'Creating your account…');
+    }
     const values = Object.fromEntries(new win.FormData(form));
     enqueue(async () => {
       say('');
       phaseStatus.textContent = '';
-      if (form.matches('[data-auth-login], [data-auth-register]')) return bootstrap(await api(form.matches('[data-auth-login]') ? 'login' : 'register', values));
+      if (authentication) {
+        try { await bootstrap(await api(form.matches('[data-auth-login]') ? 'login' : 'register', values)); }
+        catch (error) { formMessage(form, error.message); throw error; }
+        finally { form.removeAttribute('aria-busy'); submitButton.disabled = false; }
+        return;
+      }
       if (form.matches('[data-auth-recovery]')) { const result = await api('reset_request', values); say(result.message || 'If the account exists, recovery instructions will be sent.'); return; }
       if (form.matches('[data-auth-reset]')) { await api('reset_password', { token: resetToken, password: values.password }); resetToken = null; await bootstrap(); say('Password updated. Sign in with your new password.'); return; }
       if (form.matches('[data-group-create]')) { const result = await api('group_create', { name: values.name, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }); await bootstrap(); content.querySelector('[data-group-select]').value = result.groupId; await loadGroup(result.groupId); return; }
@@ -164,6 +176,15 @@ export function initGroups(root, win, { fetchFn = win.fetch?.bind(win), now = Da
       if (form.matches('[data-group-schedule]')) { await api('group_schedule', { groupId, task: values.task, startsAt: new Date(values.startsAt).toISOString(), focusMinutes: Number(values.focusMinutes), breakMinutes: Number(values.breakMinutes), rounds: Number(values.rounds), saveTemplate: form.elements.saveTemplate.checked }); await loadGroup(groupId); say('Session scheduled.'); }
     });
   });
+  function formMessage(form, message) {
+    let output = form.querySelector('[data-form-status]');
+    if (!output) { output = doc.createElement('p'); output.dataset.formStatus = ''; output.setAttribute('role', 'status'); form.append(output); }
+    output.textContent = message;
+  }
+  content.addEventListener('invalid', event => {
+    const field = event.target;
+    if (field.form) formMessage(field.form, `Check ${field.name === 'name' ? 'display name' : field.name}: ${field.validationMessage}`);
+  }, true);
   content.addEventListener('click', event => {
     const button = event.target.closest('button'); if (!button || button.type === 'submit') return;
     enqueue(async () => {
